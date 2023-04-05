@@ -1,0 +1,167 @@
+@import url(./vendor/normalize.css);
+@import url(./blocks/page.css);
+
+.header {
+  padding-top: 45px;
+  padding-bottom: 41px;
+  border-bottom: 1px solid #545454;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.profile__image {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-position: center;
+  margin-right: 24px;
+}
+
+.profile__info {
+  display: grid;
+  grid-template-areas: "title button" "description description";
+  grid-template-columns: minmax(auto, 373px) auto;
+  border-width: 1px;
+}
+
+.profile__title {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 48px;
+  grid-area: title;
+  margin: 0;
+}
+
+.profile__edit-button {
+  background: url(./images/pencil_white.svg) center no-repeat transparent;
+  height: 24px;
+  width: 24px;
+  grid-area: button;
+  border: 1px solid #ffffff;
+  margin-top: 15px;
+  padding: 0;
+}
+
+.profile__description {
+  grid-area: description;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  margin: 0;
+}
+
+.profile__add-button {
+  background: url(./images/plus_white.svg) transparent center no-repeat;
+  width: 150px;
+  height: 50px;
+  box-sizing: border-box;
+  margin-left: auto;
+  border: 2px solid #ffffff;
+}
+
+.cards {
+  /* fonts */
+  margin-top: 40px;
+}
+
+.card__list {
+  display: grid;
+  justify-content: center;
+  margin: 0;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-gap: 20px 17px;
+  padding: 0;
+}
+
+.card {
+  max-width: 285px;
+  max-height: 361px;
+  border-radius: 10px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card__image {
+  height: 282px;
+  width: 282px;
+  border-radius: 10px;
+}
+
+.card__description {
+  display: flex;
+  background-color: white;
+  color: black;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+.card__title {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card__like-button {
+  background: url(./images/like_inactive.svg) transparent center no-repeat;
+  width: 21px;
+  height: 18px;
+  border: none;
+}
+
+.footer {
+  padding-bottom: 60px;
+  padding-top: 67px;
+}
+
+.footer__copyright {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
+}
+
+@media screen and (max-width: 480px) {
+  .profile {
+    flex-direction: column;
+    background-color: green;
+  }
+  .profile__info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-left: 62px;
+    padding-right: 62px;
+  }
+
+  .profile__description {
+    width: 100%;
+    text-align: center;
+  }
+
+  .profile__add-button {
+    margin: 0;
+    width: 100%;
+  }
+}
