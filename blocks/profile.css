@@ -1,0 +1,112 @@
+.profile {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.profile__image {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-position: center;
+  margin-right: 24px;
+}
+
+.profile__info {
+  display: grid;
+  grid-template-areas: "title button" "description description";
+  grid-template-columns: minmax(auto, 373px) auto;
+  border-width: 1px;
+}
+
+.profile__title {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 48px;
+  grid-area: title;
+  margin: 0;
+}
+
+.profile__edit-button {
+  background: url(../images/pencil_white.svg) center no-repeat transparent;
+  height: 24px;
+  width: 24px;
+  grid-area: button;
+  border: 1px solid #ffffff;
+  margin-top: 15px;
+  padding: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+}
+
+.profile__description {
+  grid-area: description;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  margin: 0;
+  padding-top: 7px;
+}
+
+.profile__add-button {
+  background: url(../images/plus_white.svg) transparent center no-repeat;
+  width: 150px;
+  height: 50px;
+  box-sizing: border-box;
+  margin-left: auto;
+  border: 2px solid #ffffff;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 936px) {
+  .profile {
+    max-width: 581px;
+    margin: auto;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 637px) {
+  .profile {
+    max-width: 282px;
+    margin: auto;
+    flex-direction: column;
+  }
+  .profile__info {
+    text-align: center;
+    padding-top: 26px;
+  }
+
+  .profile__title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .profile__edit-button {
+    max-width: 18px;
+    max-height: 18px;
+    margin-left: 10px;
+    margin: auto;
+  }
+
+  .profile__description {
+    font-size: 20px;
+  }
+
+  .profile__add-button {
+    margin: 0;
+    width: 100%;
+    margin-top: 36px;
+    max-width: 282px;
+  }
+}

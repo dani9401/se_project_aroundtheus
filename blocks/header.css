@@ -1,0 +1,26 @@
+.header {
+  padding-top: 45px;
+  padding-bottom: 41px;
+  border-bottom: 1px solid #545454;
+}
+
+@media screen and (max-width: 936px) {
+  .header {
+    max-width: 581px;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 637px) {
+  .header {
+    max-width: 282px;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding-top: 28px;
+    padding-left: 7px;
+  }
+}
