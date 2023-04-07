@@ -1,4 +1,8 @@
-.card__list {
+.gallery {
+  margin-top: 40px;
+}
+
+.gallery__list {
   display: grid;
   justify-content: center;
   margin: 0;
@@ -7,7 +11,7 @@
   padding: 0;
 }
 
-.card {
+.gallery__card {
   max-width: 285px;
   max-height: 361px;
   border-radius: 10px;
@@ -17,14 +21,14 @@
   justify-content: center;
 }
 
-.card__image {
+.gallery__card-image {
   height: 282px;
   width: 282px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-.card__description {
+.gallery__card-description {
   display: flex;
   background-color: white;
   color: black;
@@ -38,7 +42,7 @@
   border-bottom-right-radius: 10px;
 }
 
-.card__title {
+.gallery__card-title {
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 900;
@@ -50,7 +54,7 @@
   max-width: 219px;
 }
 
-.card__like-button {
+.gallary__card-like-button {
   background: url(../images/like_inactive.svg) transparent center no-repeat;
   width: 21px;
   height: 18px;
@@ -58,6 +62,12 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-.card__like-button:hover {
+.gallary__card-like-button:hover {
   opacity: 0.5;
+}
+
+@media screen and (max-width: 480px) {
+  .gallery {
+    margin-top: 36px;
+  }
 }
