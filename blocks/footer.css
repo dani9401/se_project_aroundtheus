@@ -8,7 +8,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 1.22;
   color: #545454;
 }
 
@@ -22,7 +22,6 @@
 @media screen and (max-width: 637px) {
   .footer {
     max-width: 282px;
-    margin: auto;
   }
 }
 

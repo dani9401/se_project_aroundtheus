@@ -14,13 +14,12 @@
 @media screen and (max-width: 637px) {
   .header {
     max-width: 282px;
-    margin: auto;
   }
 }
 
 @media screen and (max-width: 480px) {
   .header {
     padding-top: 28px;
-    padding-left: 7px;
+    padding-left: 20px;
   }
 }
