@@ -12,8 +12,6 @@
 }
 
 .gallery__card {
-  max-width: 285px;
-  max-height: 361px;
   border-radius: 10px;
   list-style-type: none;
   display: flex;
@@ -60,6 +58,7 @@
   height: 18px;
   border: none;
   transition: opacity 0.5s ease-in-out;
+  cursor: pointer;
 }
 
 .gallery__card-like-button:hover {
