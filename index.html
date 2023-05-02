@@ -47,6 +47,7 @@
             class="profile__add-button"
             type="button"
             aria-label="add-photos"
+            id="profile-add-button"
           ></button>
         </section>
         <section class="gallery page__section">
@@ -79,6 +80,34 @@
             name="description"
             class="modal__form-description"
             id="profile-description-input"
+          />
+          <button class="modal__save-button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="profile-add-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close-button"
+          type="button"
+          id="close-profile-add-modal"
+        ></button>
+        <p class="modal__heading">New Place</p>
+        <form class="modal__form" id="modal-add-form">
+          <input
+            type="text"
+            placeholder="Title"
+            name="title"
+            class="modal__form-title"
+            id="profile-add-title-input"
+          />
+          <input
+            type="text"
+            placeholder="Image Link"
+            name="link"
+            class="modal__form-description"
+            id="profile-link-input"
           />
           <button class="modal__save-button" type="submit">Save</button>
         </form>
