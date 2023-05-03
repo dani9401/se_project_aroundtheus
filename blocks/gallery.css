@@ -61,6 +61,10 @@
   cursor: pointer;
 }
 
+.gallery__card-like-button_active {
+  background-image: url(../images/like_black.svg);
+}
+
 .gallery__card-like-button:hover {
   opacity: 0.5;
 }
