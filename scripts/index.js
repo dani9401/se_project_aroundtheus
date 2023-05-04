@@ -69,9 +69,16 @@ function getCardElement(cardData) {
   const cardTitleEl = cardElement.querySelector(".gallery__card-title");
   const cardImageEl = cardElement.querySelector(".gallery__card-image");
   const likeButton = cardElement.querySelector(".gallery__card-like-button");
+  const deleteButton = cardElement.querySelector(
+    ".gallery__card-delete-button"
+  );
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("gallery__card-like-button_active");
+  });
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
   });
 
   cardImageEl.src = cardData.link;

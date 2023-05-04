@@ -17,6 +17,23 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+}
+
+.gallery__card-delete-button {
+  background: url(../images/Trashcan_inactive.svg) transparent center no-repeat;
+  width: 18px;
+  height: 19px;
+  border: none;
+  transition: opacity 0.5s ease-in-out;
+  cursor: pointer;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.gallery__card-delete-button:hover {
+  opacity: 0.5;
 }
 
 .gallery__card-image {
