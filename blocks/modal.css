@@ -152,8 +152,8 @@
 }
 
 .preview-modal__image {
-  max-width: 800px;
-  max-height: 800px;
+  max-height: 75vh;
+  max-width: 75vw;
 }
 
 .preview-modal__title {
@@ -197,5 +197,18 @@
     margin-top: 45px;
     font-size: 14px;
     height: 46px;
+  }
+
+  .preview-modal__close-button {
+    width: 30px;
+    height: 30px;
+    top: -35px;
+    right: -35px;
+  }
+}
+
+@media screen and (max-width: 405px) {
+  .preview-modal__close-button {
+    right: -25px;
   }
 }
