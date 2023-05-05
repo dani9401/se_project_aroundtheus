@@ -1,5 +1,6 @@
 .modal {
-  display: none;
+  visibility: hidden;
+  display: flex;
   position: fixed;
   left: 0;
   right: 0;
@@ -8,10 +9,13 @@
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0 19px;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
 }
 
 .modal_opened {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal__container {
@@ -38,7 +42,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  transition: 0.5s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 .modal__close-button:hover {
@@ -110,7 +114,8 @@
 }
 
 .preview-modal {
-  display: none;
+  visibility: hidden;
+  display: flex;
   position: fixed;
   left: 0;
   right: 0;
@@ -119,10 +124,13 @@
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0 19px;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
 }
 
 .preview-modal_opened {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .preview-modal__container {
