@@ -133,7 +133,7 @@
   opacity: 1;
 }
 
-.preview-modal__container {
+.modal__preview-container {
   position: relative;
   margin: auto;
   border-radius: 10px;
@@ -159,12 +159,12 @@
   transform: rotate(-45deg);
 }
 
-.preview-modal__image {
+.modal__image {
   max-height: 75vh;
   max-width: 75vw;
 }
 
-.preview-modal__title {
+.modal__image-title {
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -205,18 +205,5 @@
     margin-top: 45px;
     font-size: 14px;
     height: 46px;
-  }
-
-  .preview-modal__close-button {
-    width: 30px;
-    height: 30px;
-    top: -35px;
-    right: -35px;
-  }
-}
-
-@media screen and (max-width: 405px) {
-  .preview-modal__close-button {
-    right: -25px;
   }
 }

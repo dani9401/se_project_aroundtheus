@@ -26,8 +26,8 @@ const initialCards = [
 ];
 
 //PROFILE EDIT MODAL
-const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
+const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditCloseButton = document.querySelector(
   "#close-profile-edit-modal"
 );
@@ -40,9 +40,9 @@ const profileDescriptionInput = document.querySelector(
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 
 //PROFILE ADD MODAL
-const profileAddButton = document.querySelector("#profile-add-button");
 const profileAddModal = document.querySelector("#profile-add-modal");
-const profileAddCloseButton = document.querySelector(
+const profileAddButton = document.querySelector("#profile-add-button");
+const profileAddCloseButton = profileAddModal.querySelector(
   "#close-profile-add-modal"
 );
 const profileAddTitleInput =
@@ -53,10 +53,10 @@ const profileAddForm = profileAddModal.querySelector("#modal-add-form");
 //Preview Image Modal
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewCloseButton = previewImageModal.querySelector(
-  ".preview-modal__close-button"
+  ".modal__close-button"
 );
-const previewImage = document.querySelector(".preview-modal__image");
-const previewTitle = document.querySelector(".preview-modal__title");
+const previewImage = previewImageModal.querySelector(".modal__image");
+const previewTitle = previewImageModal.querySelector(".modal__image-title");
 
 //Gallery - Cards
 const cardListEl = document.querySelector(".gallery__list");
@@ -64,16 +64,12 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
 // FUNCTIONS //
-function closePopup() {
-  profileEditModal.classList.remove("modal_opened");
+function openModal(modal) {
+  modal.classList.add("modal_opened");
 }
 
-function closeProfileAddPopup() {
-  profileAddModal.classList.remove("modal_opened");
-}
-
-function closePreviewImagePopup() {
-  previewImageModal.classList.remove("preview-modal_opened");
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
 }
 
 function getCardElement(cardData) {
@@ -97,7 +93,7 @@ function getCardElement(cardData) {
     previewImage.src = cardImageEl.src;
     previewImage.alt = cardTitleEl.textContent;
     previewTitle.textContent = cardTitleEl.textContent;
-    previewImageModal.classList.add("preview-modal_opened");
+    openModal(previewImageModal);
   });
 
   cardImageEl.src = cardData.link;
@@ -116,26 +112,26 @@ function renderCard(cardData) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal_opened");
+  openModal(profileEditModal);
 });
 
 profileEditCloseButton.addEventListener("click", () => {
-  closePopup();
+  closeModal(profileEditModal);
 });
 
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closePopup();
+  closeModal(profileEditModal);
 });
 
 profileAddButton.addEventListener("click", () => {
-  profileAddModal.classList.add("modal_opened");
+  openModal(profileAddModal);
 });
 
 profileAddCloseButton.addEventListener("click", () => {
-  closeProfileAddPopup();
+  closeModal(profileAddModal);
 });
 
 profileAddForm.addEventListener("submit", (e) => {
@@ -143,11 +139,11 @@ profileAddForm.addEventListener("submit", (e) => {
   const name = profileAddTitleInput.value;
   const link = profileAddImageLinkInput.value;
   renderCard({ name, link }, cardListEl);
-  closeProfileAddPopup();
+  closeModal(profileAddModal);
 });
 
 previewCloseButton.addEventListener("click", () => {
-  closePreviewImagePopup();
+  closeModal(previewImageModal);
 });
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
