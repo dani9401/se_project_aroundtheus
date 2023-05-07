@@ -39,16 +39,13 @@ const profileDescriptionInput = document.querySelector(
 );
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 
-//PROFILE ADD MODAL
-const profileAddModal = document.querySelector("#profile-add-modal");
-const profileAddButton = document.querySelector("#profile-add-button");
-const profileAddCloseButton = profileAddModal.querySelector(
-  "#close-profile-add-modal"
-);
-const profileAddTitleInput =
-  profileAddModal.querySelector(".modal__form-title");
-const profileAddImageLinkInput = document.querySelector("#profile-link-input");
-const profileAddForm = profileAddModal.querySelector("#modal-add-form");
+//ADD CARD MODAL
+const addCardModal = document.querySelector("#add-card-modal");
+const addCardButton = document.querySelector("#add-card-button");
+const addCardCloseButton = addCardModal.querySelector("#close-add-card-modal");
+const addCardTitleInput = addCardModal.querySelector(".modal__form-title");
+const addCardImageLinkInput = document.querySelector("#add-card-link-input");
+const addCardForm = addCardModal.querySelector("#modal-add-form");
 
 //Preview Image Modal
 const previewImageModal = document.querySelector("#preview-image-modal");
@@ -126,21 +123,21 @@ profileEditForm.addEventListener("submit", (e) => {
   closeModal(profileEditModal);
 });
 
-profileAddButton.addEventListener("click", () => {
-  openModal(profileAddModal);
+addCardButton.addEventListener("click", () => {
+  openModal(addCardModal);
 });
 
-profileAddCloseButton.addEventListener("click", () => {
-  closeModal(profileAddModal);
+addCardCloseButton.addEventListener("click", () => {
+  closeModal(addCardModal);
 });
 
-profileAddForm.addEventListener("submit", (e) => {
+addCardForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const name = profileAddTitleInput.value;
-  const link = profileAddImageLinkInput.value;
+  const name = addCardTitleInput.value;
+  const link = addCardImageLinkInput.value;
   renderCard({ name, link }, cardListEl);
-  closeModal(profileAddModal);
-  e.target.reset(profileAddTitleInput, profileAddImageLinkInput);
+  closeModal(addCardModal);
+  e.target.reset(addCardTitleInput, addCardImageLinkInput);
 });
 
 previewCloseButton.addEventListener("click", () => {
