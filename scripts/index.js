@@ -140,6 +140,7 @@ profileAddForm.addEventListener("submit", (e) => {
   const link = profileAddImageLinkInput.value;
   renderCard({ name, link }, cardListEl);
   closeModal(profileAddModal);
+  e.target.reset(profileAddTitleInput, profileAddImageLinkInput);
 });
 
 previewCloseButton.addEventListener("click", () => {
