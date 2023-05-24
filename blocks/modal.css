@@ -66,6 +66,12 @@
   margin-right: 36px;
 }
 
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
 .modal__form-title {
   margin-top: 54px;
   border-top: 0;
@@ -131,7 +137,9 @@
 }
 
 .modal__save-button_disabled {
-  opacity: 0.2;
+  background-color: #ffffff;
+  color: #bcb8b8;
+  border: 1px solid #000000;
 }
 
 .modal__preview-container {
