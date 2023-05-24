@@ -43,9 +43,7 @@ function setEventListeners(formEl, options) {
   //search for all the inputs inside of formEl, but use object deconstructing this time
   const { inputSelector } = options;
   const inputEls = [...formEl.querySelectorAll(options.inputSelector)];
-  const submitButton = [
-    ...formEl.querySelectorAll(options.submitButtonSelector),
-  ];
+  const submitButton = formEl.querySelector(options.submitButtonSelector);
   //add event listener. Start by looping through each input
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (evt) => {
