@@ -72,6 +72,10 @@
   position: relative;
 }
 
+.modal__label:first-of-type {
+  max-height: 83px;
+}
+
 .modal__form-title {
   margin-top: 54px;
   border-top: 0;
@@ -188,7 +192,7 @@
   }
 
   .modal__form-title {
-    margin-top: 75px;
+    margin-top: 45px;
   }
 
   .modal__save-button {
