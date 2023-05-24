@@ -44,7 +44,7 @@ const addCardModal = document.querySelector("#add-card-modal");
 const addCardButton = document.querySelector("#add-card-button");
 const addCardCloseButton = addCardModal.querySelector("#close-add-card-modal");
 const addCardTitleInput = addCardModal.querySelector(".modal__form-title");
-const addCardImageLinkInput = document.querySelector("#add-card-link-input");
+const addCardImageLinkInput = document.querySelector("#add-card-link-input"); //come back to this
 const addCardForm = addCardModal.querySelector("#modal-add-form");
 
 //Preview Image Modal

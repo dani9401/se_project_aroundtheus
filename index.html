@@ -72,16 +72,30 @@
             type="text"
             placeholder="Name"
             name="title"
-            class="modal__form-title"
+            class="modal__form-title modal__input"
             id="profile-title-input"
+            minlength="2"
+            maxlength="40"
+            required
           />
+          <span
+            class="modal__input-error"
+            id="profile-title-input-error"
+          ></span>
           <input
             type="text"
             placeholder="About Me"
             name="description"
-            class="modal__form-description"
+            class="modal__form-description modal__input"
             id="profile-description-input"
+            minlength="2"
+            maxlength="200"
+            required
           />
+          <span
+            class="modal__input-error"
+            id="profile-description-input-error"
+          ></span>
           <button class="modal__save-button" type="submit">Save</button>
         </form>
       </div>
@@ -101,15 +115,24 @@
             placeholder="Title"
             name="title"
             class="modal__form-title"
-            id="profile-add-title-input"
+            id="add-card-title-input modal__input"
+            minlength="1"
+            maxlength="30"
+            required
           />
+          <span class="modal__error" id="add-card-title-input-error"></span>
           <input
-            type="text"
+            type="url"
             placeholder="Image Link"
             name="link"
             class="modal__form-description"
-            id="add-card-link-input"
+            id="add-card-link-input modal__input"
+            required
           />
+          <span
+            class="modal__input-error"
+            id="add-card-link-input-error"
+          ></span>
           <button class="modal__save-button" type="submit">Save</button>
         </form>
       </div>
@@ -148,5 +171,6 @@
       </li>
     </template>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
   </body>
 </html>

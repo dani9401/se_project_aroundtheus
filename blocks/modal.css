@@ -94,8 +94,25 @@
   line-height: 1.2;
 }
 
+.modal__input-error {
+  color: #ff0000;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  opacity: 1;
+}
+
+.modal__input-error_active {
+  opacity: 1;
+}
+
 .modal__save-button {
-  margin-top: 48px;
+  position: absolute;
+  bottom: 36px;
+  right: 36px;
+  left: 36px;
   border-radius: 2px;
   background-color: #000000;
   color: #fff;
@@ -111,6 +128,10 @@
 
 .modal__save-button:hover {
   opacity: 0.8;
+}
+
+.modal__save-button_disabled {
+  opacity: 0.2;
 }
 
 .modal__preview-container {
