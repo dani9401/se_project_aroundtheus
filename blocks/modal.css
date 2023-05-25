@@ -76,7 +76,7 @@
   max-height: 83px;
 }
 
-.modal__form-title {
+.modal__input_type_title {
   margin-top: 54px;
   border-top: 0;
   border-right: 0;
@@ -90,7 +90,7 @@
   line-height: 1.2;
 }
 
-.modal__form-description {
+.modal__input_type_description {
   margin-top: 30px;
   border-top: 0;
   border-right: 0;
@@ -104,14 +104,13 @@
   line-height: 1.2;
 }
 
-.modal__input-error {
+.modal__error {
   color: #ff0000;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.2;
-  opacity: 1;
 }
 
 .modal__input-error_active {
