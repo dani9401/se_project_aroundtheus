@@ -76,7 +76,7 @@
   max-height: 83px;
 }
 
-.modal__input_type_title {
+.modal__input {
   margin-top: 54px;
   border-top: 0;
   border-right: 0;
@@ -90,18 +90,8 @@
   line-height: 1.2;
 }
 
-.modal__input_type_description {
+.modal__input:last-of-type {
   margin-top: 30px;
-  border-top: 0;
-  border-right: 0;
-  border-left: 0;
-  border-bottom: 1px solid rgb(0, 0, 0, 0.2);
-  height: 27px;
-  font-family: "Inter", Arial, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.2;
 }
 
 .modal__error {
@@ -133,6 +123,7 @@
   height: 50px;
   cursor: pointer;
   transition: opacity 0.5s ease-in-out;
+  border: none;
 }
 
 .modal__save-button:hover {
@@ -143,6 +134,11 @@
   background-color: #ffffff;
   color: #bcb8b8;
   border: 1px solid #000000;
+  cursor: default;
+}
+
+.modal__save-button_disabled:hover {
+  opacity: 1;
 }
 
 .modal__preview-container {

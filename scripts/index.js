@@ -46,9 +46,7 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardButton = document.querySelector("#add-card-button");
 const addCardCloseButton = addCardModal.querySelector("#close-add-card-modal");
-const addCardTitleInput = addCardModal.querySelector(
-  ".modal__input_type_title"
-);
+const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
 const addCardImageLinkInput = document.querySelector("#add-card-link-input");
 const addCardForm = addCardModal.querySelector("#modal-add-form");
 const addCardSaveButton = addCardModal.querySelector(".modal__save-button");
