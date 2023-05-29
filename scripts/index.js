@@ -25,6 +25,7 @@ const initialCards = [
   },
 ];
 
+// ALL MODALS
 const modals = Array.from(document.querySelectorAll(".modal"));
 
 //PROFILE EDIT MODAL
@@ -152,10 +153,8 @@ previewCloseButton.addEventListener("click", () => {
 
 modals.forEach((modal) => {
   modal.addEventListener("click", (e) => {
-    if (e.target.classList.contains("modal")) {
-      closeModal(modal);
-      modal.removeEventListener("click", e);
-    }
+    closeModal(modal);
+    modal.removeEventListener("click", e);
   });
 });
 
