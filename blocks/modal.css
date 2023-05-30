@@ -105,6 +105,7 @@
 
 .modal__input-error_active {
   opacity: 1;
+  border-top: 1px solid #ff0000;
 }
 
 .modal__save-button {
