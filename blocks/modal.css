@@ -56,7 +56,7 @@
   font-size: 24px;
   line-height: 1.2;
   color: #000000;
-  margin: 34px 36px 0px 36px;
+  margin: 34px 36px 24px 36px;
 }
 
 .modal__form {
@@ -70,14 +70,14 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  max-height: 50px;
 }
 
 .modal__label:first-of-type {
-  max-height: 83px;
 }
 
 .modal__input {
-  margin-top: 54px;
+  margin-top: 30px;
   border-top: 0;
   border-right: 0;
   border-left: 0;
@@ -88,10 +88,6 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
-}
-
-.modal__input:last-of-type {
-  margin-top: 30px;
 }
 
 .modal__error {
@@ -179,12 +175,16 @@
 
   .modal__heading {
     font-size: 18px;
-    margin: 25px 22px 0px 22px;
+    margin: 25px 22px 22px 22px;
   }
 
   .modal__form {
     margin-left: 22px;
     margin-right: 22px;
+  }
+
+  .modal__label {
+    max-height: 65px;
   }
 
   .modal__form-title {
