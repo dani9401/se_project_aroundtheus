@@ -165,7 +165,6 @@ modals.forEach((modal) => {
   modal.addEventListener("click", (e) => {
     if (e.target.classList.contains("modal_opened")) {
       closeModal(modal);
-      modal.removeEventListener("click", e);
     }
   });
 });
