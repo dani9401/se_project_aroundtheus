@@ -23,21 +23,35 @@ function checkInputValidity(formEl, inputEl, options) {
   }
 }
 
-function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
-  let foundInvalid = false;
-  inputEls.forEach((inputEl) => {
-    if (!inputEl.validity.valid) {
-      foundInvalid = true;
-    }
-  });
-  if (foundInvalid) {
+//function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
+//  let foundInvalid = false;
+//  inputEls.forEach((inputEl) => {
+//    if (!inputEl.validity.valid) {
+//      foundInvalid = true;
+//    }
+//  });
+//  if (foundInvalid) {
+//    submitButton.classList.add(inactiveButtonClass);
+//    submitButton.disabled = true;
+//  } else {
+//    submitButton.classList.remove(inactiveButtonClass);
+//    submitButton.disabled = false;
+//  }
+//} - - REFACTORED VERSION BELOW - -
+
+const toggleButtonState = (inputEls, submitButton, { inactiveButtonClass }) => {
+  const isFormValid = checkFormValidity(inputEls);
+  if (!isFormValid) {
     submitButton.classList.add(inactiveButtonClass);
     submitButton.disabled = true;
   } else {
     submitButton.classList.remove(inactiveButtonClass);
     submitButton.disabled = false;
   }
-}
+};
+
+const checkFormValidity = (inputEls) =>
+  inputEls.every((inputEl) => inputEl.validity.valid);
 
 function setEventListeners(formEl, options) {
   //search for all the inputs inside of formEl, but use object deconstructing this time
