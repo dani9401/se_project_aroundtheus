@@ -28,7 +28,7 @@ const initialCards = [
 // ALL MODALS
 const modals = Array.from(document.querySelectorAll(".modal"));
 
-//PROFILE EDIT MODAL
+//PROFILE EDIT MODAL-------------------------------------------------
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditCloseButton = document.querySelector(
@@ -42,7 +42,7 @@ const profileDescriptionInput = document.querySelector(
 );
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 
-//ADD CARD MODAL
+//ADD CARD MODAL-----------------------------------------------------
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardButton = document.querySelector("#add-card-button");
 const addCardCloseButton = addCardModal.querySelector("#close-add-card-modal");
@@ -50,9 +50,8 @@ const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
 const addCardImageLinkInput = document.querySelector("#add-card-link-input");
 const addCardForm = addCardModal.querySelector("#modal-add-form");
 const addCardSaveButton = addCardModal.querySelector(".modal__save-button");
-//const formSubmitButton = document.querySelectorAll(config.submitButtonSelector);
 
-//Preview Image Modal
+//PREVIEW IMAGE MODAL--------------------------------------------------
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewCloseButton = previewImageModal.querySelector(
   ".modal__close-button"
@@ -60,12 +59,12 @@ const previewCloseButton = previewImageModal.querySelector(
 const previewImage = previewImageModal.querySelector(".modal__image");
 const previewTitle = previewImageModal.querySelector(".modal__image-title");
 
-//Gallery - Cards
+//GALLARY - CARDS-------------------------------------------------------
 const cardListEl = document.querySelector(".gallery__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
-// FUNCTIONS //
+//FUNCTIONS-------------------------------------------------------------
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeModalKeypress);
@@ -81,10 +80,6 @@ function closeModalKeypress(e) {
     const modal = document.querySelector(".modal_opened");
     closeModal(modal);
   }
-}
-
-function disableSubmitButton(submitButton) {
-  submitButton.classList.add("modal__save-button_disabled");
 }
 
 function getCardElement(cardData) {
@@ -123,7 +118,7 @@ function renderCard(cardData) {
   cardListEl.prepend(cardElement);
 }
 
-// EVENT LISTENERS //
+//EVENT LISTENERS------------------------------------------------------
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
@@ -143,7 +138,11 @@ profileEditForm.addEventListener("submit", (e) => {
 
 addCardButton.addEventListener("click", () => {
   openModal(addCardModal);
-  toggleButtonState(disableSubmitButton(addCardSaveButton));
+  toggleButtonState(
+    [addCardTitleInput, addCardImageLinkInput],
+    addCardSaveButton,
+    config
+  );
 });
 
 addCardCloseButton.addEventListener("click", () => {
@@ -156,7 +155,7 @@ addCardForm.addEventListener("submit", (e) => {
   const link = addCardImageLinkInput.value;
   renderCard({ name, link }, cardListEl);
   closeModal(addCardModal);
-  e.target.reset();
+  addCardForm.reset();
 });
 
 previewCloseButton.addEventListener("click", () => {
