@@ -82,6 +82,8 @@ function closeModalKeypress(e) {
   }
 }
 
+function disableSubmitButton() {}
+
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitleEl = cardElement.querySelector(".gallery__card-title");
@@ -138,6 +140,7 @@ profileEditForm.addEventListener("submit", (e) => {
 
 addCardButton.addEventListener("click", () => {
   openModal(addCardModal);
+  toggleButtonState();
   addCardSaveButton.classList.add("modal__save-button_disabled");
 });
 
@@ -151,7 +154,7 @@ addCardForm.addEventListener("submit", (e) => {
   const link = addCardImageLinkInput.value;
   renderCard({ name, link }, cardListEl);
   closeModal(addCardModal);
-  e.target.reset(addCardTitleInput, addCardImageLinkInput);
+  e.target.reset();
 });
 
 previewCloseButton.addEventListener("click", () => {
