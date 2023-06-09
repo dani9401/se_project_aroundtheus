@@ -30,30 +30,24 @@ export default class Card {
     this._link = initialCards.link;
     this._cardSelector = cardSelector;
   }
-  // - - - - - - Get Template - - - - - -
-  _getTemplate() {
-    const cardElement = document
-      .querySelector("#card-template")
-      .cloneNode(true);
 
-    return cardElement;
+  // - - - - - - Event Handlers - - - - - -
+  _handleLikeIcon() {
+    this._cardElement
+      .querySelector(".gallery__card-like-button")
+      .classList.toggle("gallery__card-like-button_active");
   }
 
-  // - - - - - - Generate Card - - - - - -
-  getView() {
-    this.cardElement = this._getTemplate();
+  _handleCardDelete() {
+    this._cardElement.remove;
+    this._cardElement = null;
+  }
 
-    this._cardElement.querySelector(".gallery__card-title").textContent =
-      this._name;
-
-    this._cardElement.querySelector(
-      ".gallery__card-image"
-    ).style.backgroundImage = `url(${this._link})`;
-
-    this._cardElement.alt = this._name;
-
-    this._setEventListeners();
-    return this.cardElement;
+  _handlePreviewImage() {
+    previewImage.src = this._link.src;
+    previewImage.alt = this._name.textContent;
+    previewTitle.textContent = this._name.textContent;
+    openModal(previewImageModal);
   }
 
   // - - - - - - Event Listeners - - - - - -
@@ -77,24 +71,30 @@ export default class Card {
       });
   }
 
-  // - - - - - - Event Handlers - - - - - -
-  _handleLikeIcon() {
-    this._cardElement
-      .querySelector(".gallery__card-like-button")
-      .classList.toggle("gallery__card-like-button_active");
+  // - - - - - - Get Template - - - - - -
+  _getTemplate() {
+    const cardElement = document
+      .querySelector("#card-template")
+      .cloneNode(true);
+
+    return cardElement;
   }
 
-  _handleCardDelete() {
-    this._cardElement.remove;
-    this._cardElement = null;
-  }
+  // - - - - - - Generate Card - - - - - -
+  getView() {
+    this._cardElement = this._getTemplate();
 
-  _handlePreviewImage() {
-    previewImage.src = this._link.src;
-    previewImage.alt = this._name.textContent;
-    previewTitle.textContent = this._name.textContent;
-    openModal(previewImageModal);
-  }
+    this._cardElement.querySelector(".gallery__card-title").textContent =
+      this._name;
 
-  // - - - - - - Iterate Over Initial Cards List- - - - - -
+    this._cardElement.querySelector(
+      ".gallery__card-image"
+    ).style.backgroundImage = `url(${this._link})`;
+
+    this._cardElement.alt = this._name;
+
+    this._setEventListeners();
+
+    return this.cardElement;
+  }
 }

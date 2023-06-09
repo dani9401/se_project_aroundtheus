@@ -1,4 +1,4 @@
-//import Card from "../components/Card.js";
+import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
@@ -28,10 +28,9 @@ const initialCards = [
   },
 ];
 
-// CARD  -----------------------------------------------------------
-//const cardSelector = document.querySelector("#card-template");
-//const card = new Card(initialCards, cardSelector);
-//card.getView();
+//CARD  -----------------------------------------------------------
+const cardSelector = document.querySelector("#card-template");
+//const card = new Card(initialCards, cardSelector).getView();
 
 //VALIDATION ------------------------------------------------------
 const validationSettings = {
@@ -143,8 +142,9 @@ function getCardElement(cardData) {
 }
 
 function renderCard(cardData) {
-  const cardElement = getCardElement(cardData);
-  cardListEl.prepend(cardElement);
+  //const cardElement = getCardElement(cardData);
+  const card = new Card(initialCards, cardSelector).getView();
+  cardListEl.prepend(card);
 }
 
 //EVENT LISTENERS------------------------------------------------------
