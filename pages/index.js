@@ -1,3 +1,6 @@
+//import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -25,11 +28,38 @@ const initialCards = [
   },
 ];
 
-// ALL MODALS
+// CARD  -----------------------------------------------------------
+//const cardSelector = document.querySelector("#card-template");
+//const card = new Card(initialCards, cardSelector);
+//card.getView();
+
+//VALIDATION ------------------------------------------------------
+const validationSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__save-button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__input-error_active",
+};
+const addCardModal = document.querySelector("#add-card-modal");
+const profileEditModal = document.querySelector("#profile-edit-modal");
+const profileEditForm = profileEditModal.querySelector(".modal__form");
+const addCardForm = addCardModal.querySelector("#modal-add-form");
+
+const editProfileFormValidator = new FormValidator(
+  validationSettings,
+  profileEditForm
+);
+const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
+
+editProfileFormValidator.enableValidation();
+addCardFormValidator.enableFormValidator();
+
+// ALL MODALS-------------------------------------------------------
 const modals = Array.from(document.querySelectorAll(".modal"));
 
 //PROFILE EDIT MODAL-------------------------------------------------
-const profileEditModal = document.querySelector("#profile-edit-modal");
+
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditCloseButton = document.querySelector(
   "#close-profile-edit-modal"
@@ -40,15 +70,14 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-const profileEditForm = profileEditModal.querySelector(".modal__form");
 
 //ADD CARD MODAL-----------------------------------------------------
-const addCardModal = document.querySelector("#add-card-modal");
+
 const addCardButton = document.querySelector("#add-card-button");
 const addCardCloseButton = addCardModal.querySelector("#close-add-card-modal");
 const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
 const addCardImageLinkInput = document.querySelector("#add-card-link-input");
-const addCardForm = addCardModal.querySelector("#modal-add-form");
+
 const addCardSaveButton = addCardModal.querySelector(".modal__save-button");
 
 //PREVIEW IMAGE MODAL--------------------------------------------------
@@ -138,10 +167,9 @@ profileEditForm.addEventListener("submit", (e) => {
 
 addCardButton.addEventListener("click", () => {
   openModal(addCardModal);
-  toggleButtonState(
+  Card.toggleButtonState(
     [addCardTitleInput, addCardImageLinkInput],
-    addCardSaveButton,
-    config
+    addCardSaveButton
   );
 });
 

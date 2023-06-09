@@ -23,22 +23,6 @@ function checkInputValidity(formEl, inputEl, options) {
   }
 }
 
-//function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
-//  let foundInvalid = false;
-//  inputEls.forEach((inputEl) => {
-//    if (!inputEl.validity.valid) {
-//      foundInvalid = true;
-//    }
-//  });
-//  if (foundInvalid) {
-//    submitButton.classList.add(inactiveButtonClass);
-//    submitButton.disabled = true;
-//  } else {
-//    submitButton.classList.remove(inactiveButtonClass);
-//    submitButton.disabled = false;
-//  }
-//} - - REFACTORED VERSION BELOW - -
-
 const toggleButtonState = (inputEls, submitButton, { inactiveButtonClass }) => {
   const isFormValid = checkFormValidity(inputEls);
   if (!isFormValid) {
@@ -54,11 +38,9 @@ const checkFormValidity = (inputEls) =>
   inputEls.every((inputEl) => inputEl.validity.valid);
 
 function setEventListeners(formEl, options) {
-  //search for all the inputs inside of formEl, but use object deconstructing this time
   const { inputSelector } = options;
   const inputEls = [...formEl.querySelectorAll(inputSelector)];
   const submitButton = formEl.querySelector(options.submitButtonSelector);
-  //add event listener. Start by looping through each input
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (evt) => {
       checkInputValidity(formEl, inputEl, options);
@@ -82,12 +64,12 @@ function enableValidation(options) {
 }
 
 const config = {
-  formSelector: ".modal__form", //used to be .popup__form
-  inputSelector: ".modal__input", //used to be .popup__input
-  submitButtonSelector: ".modal__save-button", //used to be .popup__button
-  inactiveButtonClass: "modal__save-button_disabled", //used to be popup__button_disabled
-  inputErrorClass: "modal__input_type_error", //used to be popup__input_type_error
-  errorClass: "modal__input-error_active", //used to be popup__error_visible
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__save-button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__input-error_active",
 };
 
 enableValidation(config);
