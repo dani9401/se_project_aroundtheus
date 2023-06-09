@@ -1,5 +1,5 @@
 import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js";
+//import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -30,29 +30,28 @@ const initialCards = [
 
 //CARD  -----------------------------------------------------------
 const cardSelector = document.querySelector("#card-template");
-//const card = new Card(initialCards, cardSelector).getView();
 
 //VALIDATION ------------------------------------------------------
-const validationSettings = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__input-error_active",
-};
+//const validationSettings = {
+//  inputSelector: ".modal__input",
+//  submitButtonSelector: ".modal__save-button",
+//  inactiveButtonClass: "modal__save-button_disabled",
+//  inputErrorClass: "modal__input_type_error",
+//  errorClass: "modal__input-error_active",
+//};
 const addCardModal = document.querySelector("#add-card-modal");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardForm = addCardModal.querySelector("#modal-add-form");
 
-const editProfileFormValidator = new FormValidator(
-  validationSettings,
-  profileEditForm
-);
-const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
+//const editProfileFormValidator = new FormValidator(
+//  validationSettings,
+//  profileEditForm
+//);
+//const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
 
-editProfileFormValidator.enableValidation();
-addCardFormValidator.enableFormValidator();
+//editProfileFormValidator.enableValidation();
+//addCardFormValidator.enableFormValidator();
 
 // ALL MODALS-------------------------------------------------------
 const modals = Array.from(document.querySelectorAll(".modal"));
@@ -110,41 +109,41 @@ function closeModalKeypress(e) {
   }
 }
 
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardTitleEl = cardElement.querySelector(".gallery__card-title");
-  const cardImageEl = cardElement.querySelector(".gallery__card-image");
-  const likeButton = cardElement.querySelector(".gallery__card-like-button");
-  const deleteButton = cardElement.querySelector(
-    ".gallery__card-delete-button"
-  );
+//function getCardElement(cardData) {
+//  const cardElement = cardTemplate.cloneNode(true);
+//  const cardTitleEl = cardElement.querySelector(".gallery__card-title");
+//  const cardImageEl = cardElement.querySelector(".gallery__card-image");
+//  const likeButton = cardElement.querySelector(".gallery__card-like-button");
+// const deleteButton = cardElement.querySelector(
+//    ".gallery__card-delete-button"
+//  );
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("gallery__card-like-button_active");
-  });
+//  likeButton.addEventListener("click", () => {
+//    likeButton.classList.toggle("gallery__card-like-button_active");
+//  });
 
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
+//  deleteButton.addEventListener("click", () => {
+//    cardElement.remove();
+//  });
 
-  cardImageEl.addEventListener("click", () => {
-    previewImage.src = cardImageEl.src;
-    previewImage.alt = cardTitleEl.textContent;
-    previewTitle.textContent = cardTitleEl.textContent;
-    openModal(previewImageModal);
-  });
+//  cardImageEl.addEventListener("click", () => {
+//    previewImage.src = cardImageEl.src;
+//    previewImage.alt = cardTitleEl.textContent;
+//    previewTitle.textContent = cardTitleEl.textContent;
+//    openModal(previewImageModal);
+//  });
 
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-  cardTitleEl.textContent = cardData.name;
+//  cardImageEl.src = cardData.link;
+//  cardImageEl.alt = cardData.name;
+//  cardTitleEl.textContent = cardData.name;
 
-  return cardElement;
-}
+//  return cardElement;
+///}
 
-function renderCard(cardData) {
+function renderCard(cardListEl) {
   //const cardElement = getCardElement(cardData);
   const card = new Card(initialCards, cardSelector).getView();
-  cardListEl.prepend(card);
+  cardListEl.prepend(cardElement);
 }
 
 //EVENT LISTENERS------------------------------------------------------
@@ -198,4 +197,4 @@ modals.forEach((modal) => {
   });
 });
 
-initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+initialCards.forEach((item) => renderCard(cardListEl));
