@@ -87,9 +87,7 @@ export default class Card {
     this._cardElement.querySelector(".gallery__card-title").textContent =
       this._name;
 
-    this._cardElement.querySelector(
-      ".gallery__card-image"
-    ).style.backgroundImage = `url(${this._link})`;
+    this._cardElement.querySelector(".gallery__card-image").src = this._link;
 
     this._cardElement.alt = this._name;
 
