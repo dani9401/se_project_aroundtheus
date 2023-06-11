@@ -45,8 +45,8 @@ export default class Card {
 
   _handlePreviewImage() {
     previewImage.src = this._link;
-    previewImage.alt = this._name.textContent;
-    previewTitle.textContent = this._name.textContent;
+    previewImage.alt = this._name;
+    previewTitle.textContent = this._name;
     openModal(previewImageModal);
   }
 
