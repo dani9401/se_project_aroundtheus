@@ -165,11 +165,8 @@ profileEditForm.addEventListener("submit", (e) => {
 });
 
 addCardButton.addEventListener("click", () => {
+  addCardFormValidator.disableButton();
   openModal(addCardModal);
-  addCardFormValidator.toggleButtonState(
-    [addCardTitleInput, addCardImageLinkInput],
-    addCardSaveButton
-  );
 });
 
 addCardCloseButton.addEventListener("click", () => {
