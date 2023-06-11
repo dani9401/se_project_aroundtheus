@@ -75,7 +75,7 @@ export default class Card {
   _getTemplate() {
     const cardElement = document
       .querySelector("#card-template")
-      .cloneNode(true);
+      .content.firstElementChild.cloneNode(true);
 
     return cardElement;
   }
@@ -95,6 +95,6 @@ export default class Card {
 
     this._setEventListeners();
 
-    return this.cardElement;
+    return this._cardElement;
   }
 }

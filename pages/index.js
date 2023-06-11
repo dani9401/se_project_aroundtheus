@@ -140,10 +140,10 @@ function closeModalKeypress(e) {
 //  return cardElement;
 ///}
 
-function renderCard(cardListEl) {
+function renderCard(cardData) {
   //const cardElement = getCardElement(cardData);
-  const card = new Card(initialCards, cardSelector).getView();
-  cardListEl.prepend(cardElement);
+  const card = new Card(cardData, cardSelector);
+  cardListEl.prepend(card.getView());
 }
 
 //EVENT LISTENERS------------------------------------------------------
@@ -197,4 +197,4 @@ modals.forEach((modal) => {
   });
 });
 
-initialCards.forEach((item) => renderCard(cardListEl));
+initialCards.forEach((item) => renderCard(item));
