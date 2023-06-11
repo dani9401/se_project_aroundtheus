@@ -9,30 +9,34 @@ export default class FormValidator {
     this._form = formElement;
   }
 
-  _showInputError(inputEl) {
-    const errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
-    inputEl.classList.add(this._inputErrorClass);
+  _showInputError(_inputEl) {
+    const errorMessageEl = this._form.querySelector(
+      `#${this._inputEl.id}-error`
+    );
+    this._inputEl.classList.add(this._inputErrorClass);
     errorMessageEl.textContent = this._inputEl.validationMessage;
     errorMessageEl.classList.add(this._errorClass);
   }
 
-  _hideInputError(inputEl) {
-    const errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
-    inputEl.classList.remove(this._inputErrorClass);
+  _hideInputError(_inputEl) {
+    const errorMessageEl = this._form.querySelector(
+      `#${this._inputEl.id}-error`
+    );
+    this._inputEl.classList.remove(this._inputErrorClass);
     errorMessageEl.textContent = "";
     errorMessageEl.classList.remove(this._errorClass);
   }
 
   _checkInputValidity(_inputEl) {
-    if (!this._inputEl.validity.valid) {
-      this._showInputError(this._form, this._inputEl);
+    if (!_inputEl.validity.valid) {
+      this._showInputError(this._inputEl);
     } else {
-      this._hideInputError(this._form, this._inputEl);
+      this._hideInputError(this._inputEl);
     }
   }
 
   toggleButtonState(_inputEls, _submitButton) {
-    const _isFormValid = this._checkFormValidity(this._inputEls);
+    const _isFormValid = this._checkFormValidity(_inputEls);
     if (!_isFormValid) {
       this._submitButton.classList.add(this._inactiveButtonClass);
       this._submitButton.disabled = true;
@@ -42,7 +46,7 @@ export default class FormValidator {
     }
   }
 
-  _checkFormValidity(_inputEl) {
+  _checkFormValidity(_inputEls) {
     _inputEls.every((_inputEl) => this._inputEl.validity.valid);
   }
 
@@ -52,7 +56,7 @@ export default class FormValidator {
 
     this._inputEls.forEach((_inputEl) => {
       _inputEl.addEventListener("input", () => {
-        this._checkInputValidity(this._form, _inputEl);
+        this._checkInputValidity(_inputEl);
         this.toggleButtonState(_inputEl, this._submitButton);
       });
     });
