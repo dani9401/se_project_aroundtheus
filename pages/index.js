@@ -94,7 +94,6 @@ const cardTemplate =
 
 //FUNCTIONS-------------------------------------------------------------
 function renderCard(cardData) {
-  //const cardElement = getCardElement(cardData);
   const card = new Card(cardData, cardSelector);
   cardListEl.prepend(card.getView());
 }
