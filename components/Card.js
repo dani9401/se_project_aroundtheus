@@ -1,3 +1,5 @@
+import { openModal, closeModal, closeModalKeypress } from "../utils/utils.js";
+
 //PREVIEW IMAGE MODAL-------------------------------------------------
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewImage = previewImageModal.querySelector(".modal__image");
@@ -5,22 +7,22 @@ const previewTitle = previewImageModal.querySelector(".modal__image-title");
 
 //FUNCTIONS ------------------------------------------------------------
 
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeModalKeypress);
-}
+//function openModal(modal) {
+//  modal.classList.add("modal_opened");
+//  document.addEventListener("keydown", closeModalKeypress);
+//}
 
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeModalKeypress);
-}
+//function closeModal(modal) {
+//  modal.classList.remove("modal_opened");
+//  document.removeEventListener("keydown", closeModalKeypress);
+//}
 
-function closeModalKeypress(e) {
-  if (e.key === "Escape") {
-    const modal = document.querySelector(".modal_opened");
-    closeModal(modal);
-  }
-}
+//function closeModalKeypress(e) {
+//  if (e.key === "Escape") {
+//    const modal = document.querySelector(".modal_opened");
+//    closeModal(modal);
+//  }
+//}
 
 //CARD CLASS ------------------------------------------------------------
 

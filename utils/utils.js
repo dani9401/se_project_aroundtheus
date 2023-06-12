@@ -9,7 +9,7 @@ export function closeModal(modal) {
   document.removeEventListener("keydown", closeModalKeypress);
 }
 
-function closeModalKeypress(e) {
+export function closeModalKeypress(e) {
   if (e.key === "Escape") {
     const modal = document.querySelector(".modal_opened");
     closeModal(modal);
