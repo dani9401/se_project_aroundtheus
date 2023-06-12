@@ -1,4 +1,4 @@
-import { openModal, closeModal, closeModalKeypress } from "../utils/utils.js";
+import { openModal } from "../utils/utils.js";
 
 //PREVIEW IMAGE MODAL-------------------------------------------------
 const previewImageModal = document.querySelector("#preview-image-modal");
