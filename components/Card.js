@@ -16,9 +16,7 @@ export default class Card {
 
   // - - - - - - Event Handlers - - - - - -
   _handleLikeIcon() {
-    this._cardElement
-      .querySelector(".gallery__card-like-button")
-      .classList.toggle("gallery__card-like-button_active");
+    this._cardLikeButton.classList.toggle("gallery__card-like-button_active");
   }
 
   _handleCardDelete() {
@@ -35,30 +33,23 @@ export default class Card {
 
   // - - - - - - Event Listeners - - - - - -
   _setEventListeners() {
-    this._cardElement
-      .querySelector(".gallery__card-like-button")
-      .addEventListener("click", () => {
-        this._handleLikeIcon();
-      });
+    this._cardLikeButton.addEventListener("click", () => {
+      this._handleLikeIcon();
+    });
 
-    this._cardElement
-      .querySelector(".gallery__card-delete-button")
-      .addEventListener("click", () => {
-        this._handleCardDelete();
-      });
+    this._cardDeleteButton.addEventListener("click", () => {
+      this._handleCardDelete();
+    });
 
-    this._cardElement
-      .querySelector(".gallery__card-image")
-      .addEventListener("click", () => {
-        this._handlePreviewImage();
-      });
+    this._cardImage.addEventListener("click", () => {
+      this._handlePreviewImage();
+    });
   }
 
   // - - - - - - Get Template - - - - - -
   _getTemplate() {
-    const cardElement = document
-      .querySelector("#card-template")
-      .content.firstElementChild.cloneNode(true);
+    const cardElement =
+      this._cardSelector.content.firstElementChild.cloneNode(true);
 
     return cardElement;
   }
@@ -68,6 +59,12 @@ export default class Card {
     this._cardElement = this._getTemplate();
     this._cardTitle = this._cardElement.querySelector(".gallery__card-title");
     this._cardImage = this._cardElement.querySelector(".gallery__card-image");
+    this._cardLikeButton = this._cardElement.querySelector(
+      ".gallery__card-like-button"
+    );
+    this._cardDeleteButton = this._cardElement.querySelector(
+      ".gallery__card-delete-button"
+    );
 
     this._cardTitle.textContent = this._name;
     this._cardImage.src = this._link;
