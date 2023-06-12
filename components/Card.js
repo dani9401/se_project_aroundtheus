@@ -5,25 +5,6 @@ const previewImageModal = document.querySelector("#preview-image-modal");
 const previewImage = previewImageModal.querySelector(".modal__image");
 const previewTitle = previewImageModal.querySelector(".modal__image-title");
 
-//FUNCTIONS ------------------------------------------------------------
-
-//function openModal(modal) {
-//  modal.classList.add("modal_opened");
-//  document.addEventListener("keydown", closeModalKeypress);
-//}
-
-//function closeModal(modal) {
-//  modal.classList.remove("modal_opened");
-//  document.removeEventListener("keydown", closeModalKeypress);
-//}
-
-//function closeModalKeypress(e) {
-//  if (e.key === "Escape") {
-//    const modal = document.querySelector(".modal_opened");
-//    closeModal(modal);
-//  }
-//}
-
 //CARD CLASS ------------------------------------------------------------
 
 export default class Card {
@@ -85,11 +66,11 @@ export default class Card {
   // - - - - - - Generate Card - - - - - -
   getView() {
     this._cardElement = this._getTemplate();
+    this._cardTitle = this._cardElement.querySelector(".gallery__card-title");
+    this._cardImage = this._cardElement.querySelector(".gallery__card-image");
 
-    this._cardElement.querySelector(".gallery__card-title").textContent =
-      this._name;
-
-    this._cardElement.querySelector(".gallery__card-image").src = this._link;
+    this._cardTitle.textContent = this._name;
+    this._cardImage.src = this._link;
 
     this._cardElement.alt = this._name;
 
