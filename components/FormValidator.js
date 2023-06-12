@@ -47,7 +47,7 @@ export default class FormValidator {
   }
 
   _checkFormValidity() {
-    this._inputEls.every((_inputEl) => _inputEl.validity.valid);
+    return this._inputEls.every((_inputEl) => _inputEl.validity.valid);
   }
 
   _setEventListeners() {
