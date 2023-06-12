@@ -1,5 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import { openModal, closeModal } from "../utils/utils.js";
 
 const initialCards = [
   {
@@ -92,22 +93,22 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
 //FUNCTIONS-------------------------------------------------------------
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeModalKeypress);
-}
+//function openModal(modal) {
+//  modal.classList.add("modal_opened");
+//  document.addEventListener("keydown", closeModalKeypress);
+//}
 
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeModalKeypress);
-}
+//function closeModal(modal) {
+//  modal.classList.remove("modal_opened");
+//  document.removeEventListener("keydown", closeModalKeypress);
+//}
 
-function closeModalKeypress(e) {
-  if (e.key === "Escape") {
-    const modal = document.querySelector(".modal_opened");
-    closeModal(modal);
-  }
-}
+//function closeModalKeypress(e) {
+//  if (e.key === "Escape") {
+//    const modal = document.querySelector(".modal_opened");
+//    closeModal(modal);
+//  }
+//}
 
 //function getCardElement(cardData) {
 //  const cardElement = cardTemplate.cloneNode(true);
