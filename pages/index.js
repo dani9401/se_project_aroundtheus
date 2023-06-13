@@ -117,7 +117,6 @@ profileEditForm.addEventListener("submit", (e) => {
 });
 
 addCardButton.addEventListener("click", () => {
-  addCardFormValidator.disableButton();
   openModal(addCardModal);
 });
 
@@ -132,6 +131,7 @@ addCardForm.addEventListener("submit", (e) => {
   renderCard({ name, link }, cardListEl);
   closeModal(addCardModal);
   addCardForm.reset();
+  addCardFormValidator.disableButton();
 });
 
 previewCloseButton.addEventListener("click", () => {
