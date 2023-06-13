@@ -93,8 +93,13 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
 //FUNCTIONS-------------------------------------------------------------
-function renderCard(cardData) {
+function createCard(cardData) {
   const card = new Card(cardData, cardSelector);
+  return card;
+}
+
+function renderCard(cardData) {
+  const card = createCard(cardData);
   cardListEl.prepend(card.getView());
 }
 
