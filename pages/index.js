@@ -144,7 +144,7 @@ previewCloseButton.addEventListener("click", () => {
 });
 
 modals.forEach((modal) => {
-  modal.addEventListener("click", (e) => {
+  modal.addEventListener("mousedown", (e) => {
     if (e.target.classList.contains("modal_opened")) {
       closeModal(modal);
     }
