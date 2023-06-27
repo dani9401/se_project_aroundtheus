@@ -1,9 +1,10 @@
-import { openModal } from "../utils/utils.js";
+import Popup from "./Popup.js";
 
 //PREVIEW IMAGE MODAL-------------------------------------------------
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewImage = previewImageModal.querySelector(".modal__image");
 const previewTitle = previewImageModal.querySelector(".modal__image-title");
+const previewImagePopup = new Popup(previewImageModal);
 
 //CARD CLASS ------------------------------------------------------------
 
@@ -28,7 +29,7 @@ export default class Card {
     previewImage.src = this._link;
     previewImage.alt = this._name;
     previewTitle.textContent = this._name;
-    openModal(previewImageModal);
+    previewImagePopup.open();
   }
 
   // - - - - - - Event Listeners - - - - - -

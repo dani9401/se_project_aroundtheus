@@ -1,6 +1,7 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import { openModal, closeModal } from "../utils/utils.js";
+//import { openModal, closeModal } from "../utils/utils.js";
+import Popup from "../components/Popup.js";
 
 const initialCards = [
   {
@@ -53,6 +54,12 @@ const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
 
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
+
+// Popup Class-------------------------------------------------------
+const profileEditPopup = new Popup(profileEditModal);
+//const addCardPopup = new Popup(addCardModal);
+
+console.log(profileEditPopup);
 
 // ALL MODALS-------------------------------------------------------
 const modals = Array.from(document.querySelectorAll(".modal"));
@@ -107,7 +114,8 @@ function renderCard(cardData) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  openModal(profileEditModal);
+  //openModal(profileEditModal);
+  profileEditPopup.open();
 });
 
 profileEditCloseButton.addEventListener("click", () => {
@@ -122,7 +130,7 @@ profileEditForm.addEventListener("submit", (e) => {
 });
 
 addCardButton.addEventListener("click", () => {
-  openModal(addCardModal);
+  addCardPopup.open();
 });
 
 addCardCloseButton.addEventListener("click", () => {
