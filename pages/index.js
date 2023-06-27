@@ -56,10 +56,9 @@ editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
 // Popup Class-------------------------------------------------------
-const profileEditPopup = new Popup(profileEditModal);
-//const addCardPopup = new Popup(addCardModal);
-
-console.log(profileEditPopup);
+const profileEditPopup = new Popup({ popupSelector: "#profile-edit-modal" });
+const addCardPopup = new Popup({ popupSelector: "#add-card-modal" });
+const previewImagePopup = new Popup({ popupSelector: "#preview-image-modal" });
 
 // ALL MODALS-------------------------------------------------------
 const modals = Array.from(document.querySelectorAll(".modal"));
@@ -119,14 +118,14 @@ profileEditButton.addEventListener("click", () => {
 });
 
 profileEditCloseButton.addEventListener("click", () => {
-  closeModal(profileEditModal);
+  profileEditPopup.close();
 });
 
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closeModal(profileEditModal);
+  profileEditPopup.close();
 });
 
 addCardButton.addEventListener("click", () => {
@@ -134,7 +133,7 @@ addCardButton.addEventListener("click", () => {
 });
 
 addCardCloseButton.addEventListener("click", () => {
-  closeModal(addCardModal);
+  addCardPopup.close();
 });
 
 addCardForm.addEventListener("submit", (e) => {
@@ -142,21 +141,21 @@ addCardForm.addEventListener("submit", (e) => {
   const name = addCardTitleInput.value;
   const link = addCardImageLinkInput.value;
   renderCard({ name, link }, cardListEl);
-  closeModal(addCardModal);
+  addCardPopup.close();
   addCardForm.reset();
   addCardFormValidator.disableButton();
 });
 
 previewCloseButton.addEventListener("click", () => {
-  closeModal(previewImageModal);
+  previewImagePopup.close();
 });
 
-modals.forEach((modal) => {
-  modal.addEventListener("mousedown", (e) => {
-    if (e.target.classList.contains("modal_opened")) {
-      closeModal(modal);
-    }
-  });
-});
+//modals.forEach((modal) => {
+//  modal.addEventListener("mousedown", (e) => {
+//    if (e.target.classList.contains("modal_opened")) {
+//      closeModal(modal);
+//    }
+//  });
+//});
 
 initialCards.forEach((item) => renderCard(item));

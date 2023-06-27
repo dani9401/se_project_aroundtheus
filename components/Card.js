@@ -4,7 +4,7 @@ import Popup from "./Popup.js";
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewImage = previewImageModal.querySelector(".modal__image");
 const previewTitle = previewImageModal.querySelector(".modal__image-title");
-const previewImagePopup = new Popup(previewImageModal);
+const previewImagePopup = new Popup({ popupSelector: "#preview-image-modal" });
 
 //CARD CLASS ------------------------------------------------------------
 
