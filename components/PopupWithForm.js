@@ -1,16 +1,25 @@
-//child class of Popup class
 import Popup from "./Popup.js";
 
-class PopupWithForm extends Popup {
+export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
-    super({ popupSelector });
-    this._popupForm = this._popupElement.querySelector(".modal__form");
+    super({ popupSelector }); //this instantiates the PopupClass
+    this._popupForm = this._popupElement.querySelector(".modal__form"); //we have access to this bc of instantiation on L6
     this._handleFormSubmit = handleFormSubmit;
   }
 
   close() {
-    this._popupForm.reset();
     super.close();
+    this._popupForm.reset();
+  }
+
+  _getInputValues() {
+    //collects data from all the input fields and returns that data as an object.
+  }
+
+  setEventListeners() {
+    super.setEventListeners();
+    //add submit event handler
+    //click event listener to close icon
   }
 }
 

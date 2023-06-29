@@ -1,7 +1,8 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-//import { openModal, closeModal } from "../utils/utils.js";
-import Popup from "../components/Popup.js";
+//import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 const initialCards = [
   {
@@ -56,15 +57,17 @@ editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
 // Popup Class-------------------------------------------------------
-const profileEditPopup = new Popup({ popupSelector: "#profile-edit-modal" });
-const addCardPopup = new Popup({ popupSelector: "#add-card-modal" });
-const previewImagePopup = new Popup({ popupSelector: "#preview-image-modal" });
+//const profileEditPopup = new Popup({ popupSelector: "#profile-edit-modal" });
+//const profileEditPopup = new PopupWithForm({ popupSelector: "#profile-edit-modal" }, () => {});
+//const addCardPopup = new Popup({ popupSelector: "#add-card-modal" });
+//const addCardPopup = new PopupWithForm({ popupSelector: "#add-card-modal" }, () => {});
+//const previewImagePopup = new Popup({ popupSelector: "#preview-image-modal" });
+const previewImagePopup = new PopupWithImage("#preview-image-modal");
 
 // ALL MODALS-------------------------------------------------------
 const modals = Array.from(document.querySelectorAll(".modal"));
 
 //PROFILE EDIT MODAL-------------------------------------------------
-
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditCloseButton = document.querySelector(
   "#close-profile-edit-modal"
@@ -77,7 +80,6 @@ const profileDescriptionInput = document.querySelector(
 );
 
 //ADD CARD MODAL-----------------------------------------------------
-
 const addCardButton = document.querySelector("#add-card-button");
 const addCardCloseButton = addCardModal.querySelector("#close-add-card-modal");
 const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
@@ -145,9 +147,9 @@ addCardForm.addEventListener("submit", (e) => {
   addCardFormValidator.disableButton();
 });
 
-previewCloseButton.addEventListener("click", () => {
-  previewImagePopup.close();
-});
+//previewCloseButton.addEventListener("click", () => {
+//  previewImagePopup.close();
+//});
 
 //modals.forEach((modal) => {
 //  modal.addEventListener("mousedown", (e) => {
