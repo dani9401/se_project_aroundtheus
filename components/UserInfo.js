@@ -15,8 +15,6 @@ export default class UserInfo {
       userTitle: this._userTitleElement,
     };
     // get the user info from the elements
-    userInfo.userName = this._userNameElement;
-    userInfo.userTitle = this._userTitleElement;
     return userInfo;
   }
 
