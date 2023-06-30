@@ -3,15 +3,17 @@ import PopupWithImage from "./PopupWithImage.js";
 
 //PREVIEW IMAGE MODAL-------------------------------------------------
 const previewImageModal = document.querySelector("#preview-image-modal");
-const previewImage = previewImageModal.querySelector(".modal__image");
-const previewTitle = previewImageModal.querySelector(".modal__image-title");
+export const previewImage = previewImageModal.querySelector(".modal__image");
+export const previewTitle = previewImageModal.querySelector(
+  ".modal__image-title"
+);
 //const previewImagePopup = new Popup({ popupSelector: "#preview-image-modal" });
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
 
 //CARD CLASS ------------------------------------------------------------
 
 export default class Card {
-  constructor(initialCards, cardSelector) {
+  constructor(initialCards, cardSelector, handleCardClick) {
     this._name = initialCards.name;
     this._link = initialCards.link;
     this._cardSelector = cardSelector;
@@ -30,12 +32,12 @@ export default class Card {
     this._cardElement = null;
   }
 
-  _handlePreviewImage() {
-    previewImage.src = this._link;
-    previewImage.alt = this._name;
-    previewTitle.textContent = this._name;
-    previewImagePopup.open();
-  }
+  //_handlePreviewImage() {
+  //  previewImage.src = this._link;
+  //  previewImage.alt = this._name;
+  //  previewTitle.textContent = this._name;
+  //  previewImagePopup.open();
+  //}
 
   // - - - - - - Event Listeners - - - - - -
   _setEventListeners() {
@@ -48,7 +50,11 @@ export default class Card {
     });
 
     this._cardImage.addEventListener("click", () => {
-      this._handlePreviewImage();
+      //this._handlePreviewImage();
+      previewImage.src = this._link;
+      previewImage.alt = this._name;
+      previewTitle.textContent = this._name;
+      previewImagePopup.open(previewImage.src, previewTitle.textContent);
     });
   }
 

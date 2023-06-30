@@ -1,14 +1,31 @@
 //The UserInfo class is responsible for rendering information about the user on the page.
-class UserInfo {
-  constructor({ userName, userJob }) {}
+export default class UserInfo {
+  constructor({ userNameSelector, userTitleSelector }) {
+    // this._userNameSelector = userNameSelector;
+    // this._userTitleSelector = userTitleSelector;
+    this._userNameElement = document.querySelector(userNameSelector);
+    this._userTitleElement = document.querySelector(userTitleSelector);
+  }
 
   getUserInfo() {
     //returns an object with information about the user.
     //handy for cases when it's necessary to display the user data in the open form.
+    const userInfo = {
+      userName: this._userNameElement,
+      userTitle: this._userTitleElement,
+    };
+    // get the user info from the elements
+    userInfo.userName = this._userNameElement;
+    userInfo.userTitle = this._userTitleElement;
+    return userInfo;
   }
 
-  setUserInfo() {
+  setUserInfo(userName, userTitle) {
     // takes new user data and adds it on the page.
+    // profileTitleInput.value = profileTitle.textContent;
+    // profileDescriptionInput.value = profileDescription.textContent;
+    this._userNameElement.textContent = userName.value;
+    this._userTitleElement.textContent = userTitle.value;
   }
 }
 

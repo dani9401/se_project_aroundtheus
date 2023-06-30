@@ -14,10 +14,25 @@ export default class PopupWithForm extends Popup {
 
   _getInputValues() {
     //collects data from all the input fields and returns that data as an object.
+    //https://youtu.be/nw9NZhvL8jE training vid
+    const inputData = this._popupForm.querySelectorAll(".modal__input");
+
+    const inputObject = {};
+
+    inputData.forEach((input) => {
+      inputObject[input.name] - input.value; //why is part of this is array brackets?
+    });
+
+    return inputObject;
   }
 
   setEventListeners() {
     super.setEventListeners();
+
+    this._popupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.close();
+    });
     //add submit event handler
     //click event listener to close icon
   }

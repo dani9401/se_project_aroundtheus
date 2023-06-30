@@ -1,8 +1,8 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-//import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
 
 const initialCards = [
   {
@@ -57,12 +57,30 @@ editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
 // Popup Class-------------------------------------------------------
-//const profileEditPopup = new Popup({ popupSelector: "#profile-edit-modal" });
-//const profileEditPopup = new PopupWithForm({ popupSelector: "#profile-edit-modal" }, () => {});
-//const addCardPopup = new Popup({ popupSelector: "#add-card-modal" });
-//const addCardPopup = new PopupWithForm({ popupSelector: "#add-card-modal" }, () => {});
-//const previewImagePopup = new Popup({ popupSelector: "#preview-image-modal" });
+const profileEditPopup = new PopupWithForm("#profile-edit-modal", () => {
+  const newUserInfo = {};
+  profileTitle.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+  return newUserInfo;
+});
+
+const addCardPopup = new PopupWithForm("#add-card-modal", () => {
+  const newCardData = {};
+  addCardTitleInput = addCardTitleInput.value;
+  addCardImageLinkInput = addCardImageLinkInput.value;
+  return newCardData;
+});
+
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
+
+// UserInfo Class-------------------------------------------------------
+const profileTitle = document.querySelector(".profile__title");
+const profileDescription = document.querySelector(".profile__description");
+
+const userInfo = new UserInfo({
+  userNameSelector: profileTitle.textContent,
+  userTitleSelector: profileDescription.textContent,
+});
 
 // ALL MODALS-------------------------------------------------------
 const modals = Array.from(document.querySelectorAll(".modal"));
@@ -72,8 +90,7 @@ const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditCloseButton = document.querySelector(
   "#close-profile-edit-modal"
 );
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
+
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
@@ -113,40 +130,54 @@ function renderCard(cardData) {
 
 //EVENT LISTENERS------------------------------------------------------
 profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+  const info = userInfo.getUserInfo();
+  console.log(info);
+  profileTitleInput.value = userInfo.userName;
+  profileDescriptionInput.value = userInfo.userTitle;
   profileEditPopup.open();
+  return info;
 });
 
-profileEditCloseButton.addEventListener("click", () => {
-  profileEditPopup.close();
-});
+//profileEditCloseButton.addEventListener("click", () => {
+//  profileEditPopup.close();
+//});
 
-profileEditForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  profileEditPopup.close();
-});
+profileEditPopup.setEventListeners;
+addCardPopup.setEventListeners;
+
+//profileEditForm.addEventListener("submit", (e) => {
+//  e.preventDefault();
+//call function in user info instead of next 2 lines
+//profileTitle.textContent = profileTitleInput.value;
+//profileDescription.textContent = profileDescriptionInput.value;
+const userData = {
+  profileTitle,
+  profileDescription,
+};
+userData.setUserInfo; //need help on how to call/pass this correctly
+//profileEditPopup.close();
+//});
 
 addCardButton.addEventListener("click", () => {
   addCardPopup.open();
 });
 
-addCardCloseButton.addEventListener("click", () => {
-  addCardPopup.close();
-});
+//addCardCloseButton.addEventListener("click", () => {
+//  addCardPopup.close();
+//});
 
 addCardForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const name = addCardTitleInput.value;
-  const link = addCardImageLinkInput.value;
+  //const name = addCardTitleInput.value;
+  //const link = addCardImageLinkInput.value;
   renderCard({ name, link }, cardListEl);
   addCardPopup.close();
   addCardForm.reset();
   addCardFormValidator.disableButton();
 });
 
+//This function is the only way this modal closes with the closeButton
+//
 //previewCloseButton.addEventListener("click", () => {
 //  previewImagePopup.close();
 //});
@@ -160,3 +191,6 @@ addCardForm.addEventListener("submit", (e) => {
 //});
 
 initialCards.forEach((item) => renderCard(item));
+
+// Per OfficeHouse with Kevin, index.js should really only contain
+// CLICK event listeners
