@@ -11,8 +11,8 @@ export default class UserInfo {
     //returns an object with information about the user.
     //handy for cases when it's necessary to display the user data in the open form.
     const userInfo = {
-      userName: this._userNameElement,
-      userTitle: this._userTitleElement,
+      userName: this._userNameElement.textContent,
+      userTitle: this._userTitleElement.textContent,
     };
     // get the user info from the elements
     return userInfo;

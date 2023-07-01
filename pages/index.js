@@ -74,13 +74,12 @@ const addCardPopup = new PopupWithForm("#add-card-modal", () => {
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
 
 // UserInfo Class-------------------------------------------------------
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
-
 const userInfo = new UserInfo({
-  userNameSelector: profileTitle.textContent,
-  userTitleSelector: profileDescription.textContent,
+  userNameSelector: ".profile__title",
+  userTitleSelector: ".profile__description",
 });
+
+console.log(userInfo);
 
 // ALL MODALS-------------------------------------------------------
 const modals = Array.from(document.querySelectorAll(".modal"));
@@ -90,7 +89,8 @@ const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditCloseButton = document.querySelector(
   "#close-profile-edit-modal"
 );
-
+const profileTitle = document.querySelector(".profile__title");
+const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
@@ -132,8 +132,8 @@ function renderCard(cardData) {
 profileEditButton.addEventListener("click", () => {
   const info = userInfo.getUserInfo();
   console.log(info);
-  profileTitleInput.value = userInfo.userName;
-  profileDescriptionInput.value = userInfo.userTitle;
+  profileTitleInput.value = info.userName;
+  profileDescriptionInput.value = info.userTitle;
   profileEditPopup.open();
   return info;
 });
