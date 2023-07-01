@@ -79,8 +79,6 @@ const userInfo = new UserInfo({
   userTitleSelector: ".profile__description",
 });
 
-console.log(userInfo);
-
 // ALL MODALS-------------------------------------------------------
 const modals = Array.from(document.querySelectorAll(".modal"));
 
@@ -131,32 +129,23 @@ function renderCard(cardData) {
 //EVENT LISTENERS------------------------------------------------------
 profileEditButton.addEventListener("click", () => {
   const info = userInfo.getUserInfo();
-  console.log(info);
   profileTitleInput.value = info.userName;
   profileDescriptionInput.value = info.userTitle;
   profileEditPopup.open();
-  return info;
 });
 
-//profileEditCloseButton.addEventListener("click", () => {
-//  profileEditPopup.close();
-//});
+profileEditCloseButton.addEventListener("click", () => {
+  profileEditPopup.close();
+});
 
 profileEditPopup.setEventListeners;
 addCardPopup.setEventListeners;
 
-//profileEditForm.addEventListener("submit", (e) => {
-//  e.preventDefault();
-//call function in user info instead of next 2 lines
-//profileTitle.textContent = profileTitleInput.value;
-//profileDescription.textContent = profileDescriptionInput.value;
-const userData = {
-  profileTitle,
-  profileDescription,
-};
-userData.setUserInfo; //need help on how to call/pass this correctly
-//profileEditPopup.close();
-//});
+profileEditForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  userInfo.setUserInfo(profileTitleInput.value, profileDescriptionInput.value);
+  profileEditPopup.close();
+});
 
 addCardButton.addEventListener("click", () => {
   addCardPopup.open();
