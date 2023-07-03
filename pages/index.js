@@ -34,7 +34,7 @@ const initialCards = [
 //CARD  -----------------------------------------------------------
 const cardSelector = document.querySelector("#card-template");
 
-//VALIDATION ------------------------------------------------------
+//VALIDATION CLASS------------------------------------------------
 const validationSettings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__save-button",
@@ -56,7 +56,7 @@ const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
-// Popup Class-------------------------------------------------------
+// POPUP CLASS-------------------------------------------------------
 const profileEditPopup = new PopupWithForm("#profile-edit-modal", () => {
   const newUserInfo = {};
   profileTitle.textContent = profileTitleInput.value;
@@ -71,9 +71,11 @@ const addCardPopup = new PopupWithForm("#add-card-modal", () => {
   return newCardData;
 });
 
+console.log(addCardPopup);
+
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
 
-// UserInfo Class-------------------------------------------------------
+// USER INFO CLASS-------------------------------------------------------
 const userInfo = new UserInfo({
   userNameSelector: ".profile__title",
   userTitleSelector: ".profile__description",
@@ -127,6 +129,10 @@ function renderCard(cardData) {
 }
 
 //EVENT LISTENERS------------------------------------------------------
+profileEditPopup.setEventListeners();
+addCardPopup.setEventListeners();
+previewImagePopup.setEventListeners();
+
 profileEditButton.addEventListener("click", () => {
   const info = userInfo.getUserInfo();
   profileTitleInput.value = info.userName;
@@ -134,12 +140,9 @@ profileEditButton.addEventListener("click", () => {
   profileEditPopup.open();
 });
 
-profileEditCloseButton.addEventListener("click", () => {
-  profileEditPopup.close();
+addCardButton.addEventListener("click", () => {
+  addCardPopup.open();
 });
-
-profileEditPopup.setEventListeners;
-addCardPopup.setEventListeners;
 
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -147,29 +150,16 @@ profileEditForm.addEventListener("submit", (e) => {
   profileEditPopup.close();
 });
 
-addCardButton.addEventListener("click", () => {
-  addCardPopup.open();
-});
-
-//addCardCloseButton.addEventListener("click", () => {
-//  addCardPopup.close();
-//});
-
 addCardForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  //const name = addCardTitleInput.value;
-  //const link = addCardImageLinkInput.value;
+  const name = addCardTitleInput.value;
+  const link = addCardImageLinkInput.value;
+  console.log("addCardTitleInput".value);
   renderCard({ name, link }, cardListEl);
   addCardPopup.close();
   addCardForm.reset();
   addCardFormValidator.disableButton();
 });
-
-//This function is the only way this modal closes with the closeButton
-//
-//previewCloseButton.addEventListener("click", () => {
-//  previewImagePopup.close();
-//});
 
 //modals.forEach((modal) => {
 //  modal.addEventListener("mousedown", (e) => {
@@ -181,5 +171,5 @@ addCardForm.addEventListener("submit", (e) => {
 
 initialCards.forEach((item) => renderCard(item));
 
-// Per OfficeHouse with Kevin, index.js should really only contain
+// Per OfficeHours with Kevin, index.js should really only contain
 // CLICK event listeners

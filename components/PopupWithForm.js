@@ -14,7 +14,6 @@ export default class PopupWithForm extends Popup {
 
   _getInputValues() {
     //collects data from all the input fields and returns that data as an object.
-    //https://youtu.be/nw9NZhvL8jE training vid
     const inputData = this._popupForm.querySelectorAll(".modal__input");
 
     const inputObject = {};
@@ -33,6 +32,11 @@ export default class PopupWithForm extends Popup {
       e.preventDefault();
       this.close();
     });
+
+    this._popupCloseButton.addEventListener("click", () => {
+      this.close();
+    });
+
     //add submit event handler
     //click event listener to close icon
   }

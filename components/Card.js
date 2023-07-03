@@ -1,4 +1,3 @@
-import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 
 //PREVIEW IMAGE MODAL-------------------------------------------------
@@ -7,16 +6,16 @@ export const previewImage = previewImageModal.querySelector(".modal__image");
 export const previewTitle = previewImageModal.querySelector(
   ".modal__image-title"
 );
-//const previewImagePopup = new Popup({ popupSelector: "#preview-image-modal" });
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
 
 //CARD CLASS ------------------------------------------------------------
 
 export default class Card {
-  constructor(initialCards, cardSelector, handleCardClick) {
+  constructor(initialCards, cardSelector) {
     this._name = initialCards.name;
     this._link = initialCards.link;
     this._cardSelector = cardSelector;
+    //this._handleCardClick = handleCardClick;
   }
   //Connect the Card class to the popup.
   //Make Card take the handleCardClick() function into the constructor.
