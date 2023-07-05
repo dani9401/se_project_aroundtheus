@@ -32,19 +32,9 @@ export default class Popup {
     this._popupCloseButton.addEventListener("click", () => {
       this.close();
     });
-    //const popupCloseButtons = document.querySelectorAll(".modal__close-button");
-    //popupCloseButtons.forEach((button) => {
-    //  button.addEventListener("click", () => {
-    //    this.close();
-    //  });
-    //});
+
     //this._popupElement.addEventListener("mousedown", () => {
     //  this.close();
-    //});
-    //this._popupElement.addEventListener("mousedown", (e) => {
-    //  if (e.target.classList.contains("modal_opened")) {
-    //    this.close();
-    //  }
     //});
   }
 }

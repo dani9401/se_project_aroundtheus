@@ -33,10 +33,6 @@ export default class PopupWithForm extends Popup {
       this.close();
     });
 
-    this._popupCloseButton.addEventListener("click", () => {
-      this.close();
-    });
-
     //add submit event handler
     //click event listener to close icon
   }

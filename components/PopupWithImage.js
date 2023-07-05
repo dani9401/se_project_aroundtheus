@@ -14,7 +14,5 @@ export default class PopupWithImage extends Popup {
     previewImage.src = imageURL;
     previewImage.alt = imageTitle;
     previewTitle.textContent = imageTitle;
-    console.log(previewImage.src);
-    console.log(previewImage.textContent);
   }
 }
