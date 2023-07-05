@@ -3,6 +3,7 @@ import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import Section from "../components/section.js";
 
 const initialCards = [
   {
@@ -33,6 +34,7 @@ const initialCards = [
 
 //CARD  -----------------------------------------------------------
 const cardSelector = document.querySelector("#card-template");
+const cardListEl = document.querySelector(".gallery__list");
 
 //VALIDATION CLASS------------------------------------------------
 const validationSettings = {
@@ -71,8 +73,6 @@ const addCardPopup = new PopupWithForm("#add-card-modal", () => {
   return newCardData;
 });
 
-console.log(addCardPopup);
-
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
 
 // USER INFO CLASS-------------------------------------------------------
@@ -81,7 +81,26 @@ const userInfo = new UserInfo({
   userTitleSelector: ".profile__description",
 });
 
-// ALL MODALS-------------------------------------------------------
+// SECTION CLASS-------------------------------------------------------
+const section = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      //creat your card here, use functionality I've already created
+      const card = createCard(cardData);
+      cardListEl.prepend(card.getView());
+      //section.addItem(card);
+      //cardListEl.section.addItem(card);
+      //call addItem from Section class and pass the already created card
+      //Section.addItem(card);
+    },
+  },
+  ".gallery__list"
+);
+
+section.renderItems();
+
+// ALL MODALS----------------------------------------------------------
 const modals = Array.from(document.querySelectorAll(".modal"));
 
 //PROFILE EDIT MODAL-------------------------------------------------
@@ -112,21 +131,16 @@ const previewCloseButton = previewImageModal.querySelector(
 const previewImage = previewImageModal.querySelector(".modal__image");
 const previewTitle = previewImageModal.querySelector(".modal__image-title");
 
-//GALLARY - CARDS-------------------------------------------------------
-const cardListEl = document.querySelector(".gallery__list");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
-
 //FUNCTIONS-------------------------------------------------------------
 function createCard(cardData) {
   const card = new Card(cardData, cardSelector);
   return card;
 }
 
-function renderCard(cardData) {
-  const card = createCard(cardData);
-  cardListEl.prepend(card.getView());
-}
+//function renderCard(cardData) {
+//  const card = createCard(cardData);
+//  cardListEl.prepend(card.getView());
+//}
 
 //EVENT LISTENERS------------------------------------------------------
 profileEditPopup.setEventListeners();
@@ -154,8 +168,11 @@ addCardForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const name = addCardTitleInput.value;
   const link = addCardImageLinkInput.value;
-  console.log("addCardTitleInput".value);
-  renderCard({ name, link }, cardListEl);
+
+  const newCard = createCard({ name, link }, cardListEl);
+  section.addItem(newCard.getView());
+  //cardListEl.prepend(newCard.getView());
+  //renderCard({ name, link }, cardListEl);
   addCardPopup.close();
   addCardForm.reset();
   addCardFormValidator.disableButton();
@@ -169,7 +186,7 @@ addCardForm.addEventListener("submit", (e) => {
 //  });
 //});
 
-initialCards.forEach((item) => renderCard(item));
+//initialCards.forEach((item) => renderCard(item));
 
 // Per OfficeHours with Kevin, index.js should really only contain
 // CLICK event listeners
