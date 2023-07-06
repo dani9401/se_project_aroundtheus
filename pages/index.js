@@ -68,6 +68,8 @@ const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
 
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
 
+console.log(previewImagePopup);
+
 // USER INFO CLASS-------------------------------------------------------
 const userInfo = new UserInfo({
   userNameSelector: ".profile__title",
@@ -115,6 +117,9 @@ const previewImageModal = document.querySelector("#preview-image-modal");
 const previewCloseButton = previewImageModal.querySelector(
   ".modal__close-button"
 );
+
+console.log(previewImageModal);
+
 const previewImage = previewImageModal.querySelector(".modal__image");
 const previewTitle = previewImageModal.querySelector(".modal__image-title");
 
@@ -200,7 +205,7 @@ function handleAddCardSubmit(inputValues) {
 }
 
 function handleCardClick(cardData) {
-  previewImage.src = cardData.link;
-  previewTitle.textContent = cardData.name;
+  //previewImage.src = cardData.link;
+  //previewTitle.textContent = cardData.name;
   previewImagePopup.open(cardData);
 }
