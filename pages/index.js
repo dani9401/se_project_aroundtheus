@@ -59,19 +59,12 @@ editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
 // POPUP CLASS-------------------------------------------------------
-const profileEditPopup = new PopupWithForm("#profile-edit-modal", () => {
-  const newUserInfo = {};
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  return newUserInfo;
-});
+const profileEditPopup = new PopupWithForm(
+  "#profile-edit-modal",
+  handleEditProfileSubmit
+);
 
-const addCardPopup = new PopupWithForm("#add-card-modal", () => {
-  const newCardData = {};
-  addCardTitleInput = addCardTitleInput.value;
-  addCardImageLinkInput = addCardImageLinkInput.value;
-  return newCardData;
-});
+const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
 
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
 
@@ -115,8 +108,6 @@ const addCardButton = document.querySelector("#add-card-button");
 const addCardCloseButton = addCardModal.querySelector("#close-add-card-modal");
 const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
 const addCardImageLinkInput = document.querySelector("#add-card-link-input");
-console.log(addCardImageLinkInput);
-
 const addCardSaveButton = addCardModal.querySelector(".modal__save-button");
 
 //PREVIEW IMAGE MODAL--------------------------------------------------
@@ -144,34 +135,31 @@ addCardPopup.setEventListeners();
 previewImagePopup.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
-  const info = userInfo.getUserInfo();
-  profileTitleInput.value = info.userName;
-  profileDescriptionInput.value = info.userTitle;
-  profileEditPopup.open();
+  handleProfileEditClick();
 });
 
 addCardButton.addEventListener("click", () => {
   addCardPopup.open();
 });
 
-profileEditForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  userInfo.setUserInfo(profileTitleInput.value, profileDescriptionInput.value);
-  profileEditPopup.close();
-});
+//profileEditForm.addEventListener("submit", (e) => {
+//  e.preventDefault();
+//  userInfo.setUserInfo(profileTitleInput.value, profileDescriptionInput.value);
+//  profileEditPopup.close();
+//});
 
-addCardForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const newCardData = {
-    name: addCardTitleInput.value,
-    link: addCardImageLinkInput.value,
-  };
-  const newCard = createCard(newCardData);
-  section.addItem(newCard.getView());
-  addCardPopup.close();
-  addCardForm.reset();
-  addCardFormValidator.disableButton();
-});
+//addCardForm.addEventListener("submit", (e) => {
+// e.preventDefault();
+// const newCardData = {
+//   name: addCardTitleInput.value,
+//   link: addCardImageLinkInput.value,
+// };
+// const newCard = createCard(newCardData);
+// section.addItem(newCard.getView());
+// addCardPopup.close();
+// addCardForm.reset();
+// addCardFormValidator.disableButton();
+// });
 
 //modals.forEach((modal) => {
 //  modal.addEventListener("mousedown", (e) => {
@@ -185,3 +173,28 @@ addCardForm.addEventListener("submit", (e) => {
 
 // Per OfficeHours with Kevin, index.js should really only contain
 // CLICK event listeners
+
+//FUNCTIONS & EVENT HANDLERS----------------------------------------------
+function handleProfileEditClick() {
+  const info = userInfo.getUserInfo();
+  profileTitleInput.value = info.userName;
+  profileDescriptionInput.value = info.userTitle;
+  profileEditPopup.open();
+}
+
+function handleEditProfileSubmit(inputValues) {
+  userInfo.setUserInfo(profileTitleInput.value, profileDescriptionInput.value);
+  profileEditPopup.close();
+}
+
+function handleAddCardSubmit(inputValues) {
+  const newCardData = {
+    name: addCardTitleInput.value,
+    link: addCardImageLinkInput.value,
+  };
+  const newCard = createCard(newCardData);
+  section.addItem(newCard.getView());
+  addCardPopup.close();
+  addCardForm.reset();
+  addCardFormValidator.disableButton();
+}
