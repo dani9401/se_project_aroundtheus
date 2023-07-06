@@ -120,7 +120,7 @@ const previewTitle = previewImageModal.querySelector(".modal__image-title");
 
 //FUNCTIONS-------------------------------------------------------------
 function createCard(cardData) {
-  const card = new Card(cardData, cardSelector);
+  const card = new Card(cardData, cardSelector, handleCardClick);
   return card;
 }
 
@@ -197,4 +197,10 @@ function handleAddCardSubmit(inputValues) {
   addCardPopup.close();
   addCardForm.reset();
   addCardFormValidator.disableButton();
+}
+
+function handleCardClick(cardData) {
+  previewImage.src = cardData.link;
+  previewTitle.textContent = cardData.name;
+  previewImagePopup.open(cardData);
 }

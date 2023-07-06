@@ -1,25 +1,16 @@
-import PopupWithImage from "./PopupWithImage.js";
-
 //PREVIEW IMAGE MODAL-------------------------------------------------
 const previewImageModal = document.querySelector("#preview-image-modal");
-export const previewImage = previewImageModal.querySelector(".modal__image");
-export const previewTitle = previewImageModal.querySelector(
-  ".modal__image-title"
-);
-const previewImagePopup = new PopupWithImage("#preview-image-modal");
-
+const previewImage = previewImageModal.querySelector(".modal__image");
+const previewTitle = previewImageModal.querySelector(".modal__image-title");
 //CARD CLASS ------------------------------------------------------------
 
 export default class Card {
-  constructor(initialCards, cardSelector) {
+  constructor(initialCards, cardSelector, handleCardClick) {
     this._name = initialCards.name;
     this._link = initialCards.link;
     this._cardSelector = cardSelector;
-    //this._handleCardClick = handleCardClick;
+    this._handleCardClick = handleCardClick;
   }
-  //Connect the Card class to the popup.
-  //Make Card take the handleCardClick() function into the constructor.
-  //When the user clicks on the card, this function will open the popup with an image.
 
   // - - - - - - Event Handlers - - - - - -
   _handleLikeIcon() {
@@ -30,13 +21,6 @@ export default class Card {
     this._cardElement.remove();
     this._cardElement = null;
   }
-
-  //_handlePreviewImage() {
-  //  previewImage.src = this._link;
-  //  previewImage.alt = this._name;
-  //  previewTitle.textContent = this._name;
-  //  previewImagePopup.open();
-  //}
 
   // - - - - - - Event Listeners - - - - - -
   _setEventListeners() {
@@ -49,11 +33,11 @@ export default class Card {
     });
 
     this._cardImage.addEventListener("click", () => {
-      //this._handlePreviewImage();
-      previewImage.src = this._link;
-      previewImage.alt = this._name;
-      previewTitle.textContent = this._name;
-      previewImagePopup.open(previewImage.src, previewTitle.textContent);
+      const cardData = {
+        name: this._cardTitle.textContent,
+        link: this._cardImage.src,
+      };
+      this._handleCardClick(cardData);
     });
   }
 

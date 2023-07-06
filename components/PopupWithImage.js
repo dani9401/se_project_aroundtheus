@@ -1,5 +1,4 @@
 import Popup from "./Popup.js";
-import { previewImage, previewTitle } from "./Card.js";
 
 export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
@@ -11,8 +10,7 @@ export default class PopupWithImage extends Popup {
 
   open(imageURL, imageTitle) {
     super.open();
-    previewImage.src = imageURL;
-    previewImage.alt = imageTitle;
-    previewTitle.textContent = imageTitle;
+    //previewImage.src = imageURL;
+    //previewTitle.textContent = imageTitle;
   }
 }
