@@ -1,7 +1,3 @@
-//PREVIEW IMAGE MODAL-------------------------------------------------
-const previewImageModal = document.querySelector("#preview-image-modal");
-const previewImage = previewImageModal.querySelector(".modal__image");
-const previewTitle = previewImageModal.querySelector(".modal__image-title");
 //CARD CLASS ------------------------------------------------------------
 
 export default class Card {
