@@ -32,18 +32,5 @@ export default class PopupWithForm extends Popup {
       const inputValues = this._getInputValues();
       this._handleFormSubmit(inputValues);
     });
-
-    //click event listener to close icon
   }
 }
-
-// index.js example below from Max
-
-//const newCardPopup = new PopupWithForm("#add-card-modal", () => {});
-
-//newCardPopup.open();
-//newCardPopup.close();
-
-//reminder to make sure our form continues to clear any previously filled in values if
-//the popup is closed before submitting. When popup is reopened, fields should
-// always be empty/cleared.
