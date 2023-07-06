@@ -2,8 +2,8 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
-    super({ popupSelector }); //this instantiates the PopupClass
-    this._popupForm = this._popupElement.querySelector(".modal__form"); //we have access to this bc of instantiation on L6
+    super({ popupSelector });
+    this._popupForm = this._popupElement.querySelector(".modal__form");
     this._handleFormSubmit = handleFormSubmit;
   }
 
@@ -13,13 +13,12 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    //collects data from all the input fields and returns that data as an object.
     const inputData = this._popupForm.querySelectorAll(".modal__input");
 
     const inputObject = {};
 
     inputData.forEach((input) => {
-      inputObject[input.name] - input.value; //why is part of this is array brackets?
+      inputObject[input.name] - input.value; //why is input.name in brackets but value isn't?
     });
 
     return inputObject;
@@ -30,10 +29,10 @@ export default class PopupWithForm extends Popup {
 
     this._popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      this.close();
+      const inputValues = this._getInputValues();
+      this.handleFormSubmit(inputValues);
     });
 
-    //add submit event handler
     //click event listener to close icon
   }
 }

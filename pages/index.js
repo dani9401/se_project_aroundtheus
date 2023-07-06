@@ -86,16 +86,11 @@ const section = new Section(
   {
     items: initialCards,
     renderer: (cardData) => {
-      //creat your card here, use functionality I've already created
       const card = createCard(cardData);
-      cardListEl.prepend(card.getView());
-      //section.addItem(card);
-      //cardListEl.section.addItem(card);
-      //call addItem from Section class and pass the already created card
-      //Section.addItem(card);
+      section.addItem(card.getView());
     },
   },
-  ".gallery__list"
+  cardListEl
 );
 
 section.renderItems();
@@ -120,6 +115,7 @@ const addCardButton = document.querySelector("#add-card-button");
 const addCardCloseButton = addCardModal.querySelector("#close-add-card-modal");
 const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
 const addCardImageLinkInput = document.querySelector("#add-card-link-input");
+console.log(addCardImageLinkInput);
 
 const addCardSaveButton = addCardModal.querySelector(".modal__save-button");
 
@@ -166,13 +162,12 @@ profileEditForm.addEventListener("submit", (e) => {
 
 addCardForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const name = addCardTitleInput.value;
-  const link = addCardImageLinkInput.value;
-
-  const newCard = createCard({ name, link }, cardListEl);
+  const newCardData = {
+    name: addCardTitleInput.value,
+    link: addCardImageLinkInput.value,
+  };
+  const newCard = createCard(newCardData);
   section.addItem(newCard.getView());
-  //cardListEl.prepend(newCard.getView());
-  //renderCard({ name, link }, cardListEl);
   addCardPopup.close();
   addCardForm.reset();
   addCardFormValidator.disableButton();
