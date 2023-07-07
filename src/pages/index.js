@@ -79,7 +79,7 @@ const section = new Section(
     items: initialCards,
     renderer: (cardData) => {
       const card = createCard(cardData);
-      section.addItem(card.getView());
+      section.addItem(card);
     },
   },
   cardListEl
@@ -116,7 +116,7 @@ addCardButton.addEventListener("click", () => {
 //FUNCTIONS & EVENT HANDLERS----------------------------------------------
 function createCard(cardData) {
   const card = new Card(cardData, cardSelector, handleCardClick);
-  return card;
+  return card.getView();
 }
 
 function handleProfileEditClick() {
@@ -137,7 +137,7 @@ function handleAddCardSubmit(inputValues) {
     link: addCardImageLinkInput.value,
   };
   const newCard = createCard(newCardData);
-  section.addItem(newCard.getView());
+  section.addItem(newCard);
   addCardPopup.close();
   addCardForm.reset();
 }
