@@ -8,18 +8,11 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("modal_opened");
-
-    document.addEventListener("keydown", (e) => {
-      this._handleEscClose(e);
-    });
   }
 
   close() {
     this._popupElement.classList.remove("modal_opened");
-
-    document.removeEventListener("keydown", (e) => {
-      this._handleEscClose(e);
-    });
+    this._removeEventListeners();
   }
 
   _handleEscClose(e) {
@@ -37,6 +30,16 @@ export default class Popup {
       if (e.target.classList.contains("modal")) {
         this.close();
       }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      this._handleEscClose(e);
+    });
+  }
+
+  _removeEventListeners() {
+    document.removeEventListener("keydown", (e) => {
+      this._handleEscClose(e);
     });
   }
 }
