@@ -139,7 +139,6 @@ function handleAddCardSubmit(inputValues) {
   const newCard = createCard(newCardData);
   section.addItem(newCard);
   addCardPopup.close();
-  addCardForm.reset();
 }
 
 function handleCardClick(cardData) {
