@@ -100,10 +100,6 @@ const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
 const addCardImageLinkInput = document.querySelector("#add-card-link-input");
 
 //EVENT LISTENERS------------------------------------------------------
-profileEditPopup.setEventListeners();
-addCardPopup.setEventListeners();
-previewImagePopup.setEventListeners();
-
 profileEditButton.addEventListener("click", () => {
   handleProfileEditClick();
 });

@@ -8,6 +8,7 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("modal_opened");
+    this.setEventListeners();
   }
 
   close() {
