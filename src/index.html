@@ -15,13 +15,13 @@
     <meta name="author" content="Danielle Foss" />
     <title>Around the US</title>
     <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/logo_aroundtheus_white.svg"
+          src="<%=require('./images/logo_aroundtheus_white.svg')%>"
+          alt="Logo"
           class="header__logo"
           alt="Around the US Logo white"
         />
@@ -30,7 +30,7 @@
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.png"
+            src="<%=require('./images/jacques-cousteau.png')%>"
             alt="avatar"
           />
           <div class="profile__info">
@@ -172,6 +172,5 @@
         </div>
       </li>
     </template>
-    <script src="./pages/index.js" type="module"></script>
   </body>
 </html>
