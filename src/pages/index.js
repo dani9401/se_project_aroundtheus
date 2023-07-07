@@ -109,6 +109,7 @@ profileEditButton.addEventListener("click", () => {
 });
 
 addCardButton.addEventListener("click", () => {
+  addCardFormValidator.disableButton();
   addCardPopup.open();
 });
 
@@ -139,7 +140,6 @@ function handleAddCardSubmit(inputValues) {
   section.addItem(newCard.getView());
   addCardPopup.close();
   addCardForm.reset();
-  addCardFormValidator.disableButton();
 }
 
 function handleCardClick(cardData) {
