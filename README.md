@@ -8,7 +8,9 @@
 - Link to Project in GitHub Pages
 
 **Description**
-A social website for collecting, posting, and sharing great photos of travels around the United States. Technologies used are HTML, CSS, JS, Flexbox, Grid, and Figma. Website is responsive/mobile-friendly.
+A social website for collecting, posting, and sharing great photos of travels around the United States.
+Technologies used are HTML, CSS, JS, Flexbox, Grid, Figma, and Webpack.
+Website is responsive/mobile-friendly.
 
 **Instructions on Deployment**
 
