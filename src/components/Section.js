@@ -2,7 +2,7 @@ export default class Section {
   constructor({ items, renderer }, selector) {
     this._items = items;
     this._renderer = renderer;
-    this._cssSelector = selector;
+    this._container = selector;
   }
 
   renderItems() {
@@ -12,6 +12,6 @@ export default class Section {
   }
 
   addItem(newCard) {
-    this._cssSelector.prepend(newCard);
+    this._container.prepend(newCard);
   }
 }
