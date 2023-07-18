@@ -5,6 +5,10 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/section.js";
 import "../pages/index.css";
+//import "../practice.js";
+import "../api.js";
+import Api from "../api.js";
+import { isAbsoluteURL } from "webpack-dev-server";
 
 const initialCards = [
   {
@@ -32,6 +36,32 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+//API  -----------------------------------------------------------
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
+  headers: {
+    authorization: "61d2a1b6-82a5-4ea1-a1a2-2a63d3c4120b",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getInitialCards().then((data) => {
+  //Promise.resolve(data);
+  data.forEach((object) => {
+    const name = object.name;
+    const link = object.link;
+    const newCard = createCard({ name, link });
+    section.addItem(newCard);
+  });
+});
+//.catch((err) => {
+//  console.error(err); // log the error to the console
+//});
+
+//api.getProfileInfo().then((data) => {
+//  console.log(data);
+//});
 
 //CARD  -----------------------------------------------------------
 const cardSelector = document.querySelector("#card-template");
@@ -86,6 +116,9 @@ const section = new Section(
 );
 
 section.renderItems();
+
+//console.log(section2);
+//section2.renderItems();
 
 //PROFILE EDIT MODAL-------------------------------------------------
 const profileEditButton = document.querySelector("#profile-edit-button");
