@@ -5,10 +5,8 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/section.js";
 import "../pages/index.css";
-//import "../practice.js";
 import "../api.js";
 import Api from "../api.js";
-import { isAbsoluteURL } from "webpack-dev-server";
 
 const initialCards = [
   {
@@ -59,9 +57,9 @@ api.getInitialCards().then((data) => {
 //  console.error(err); // log the error to the console
 //});
 
-//api.getProfileInfo().then((data) => {
-//  console.log(data);
-//});
+api.getProfileInfo().then((data) => {
+  userInfo.setUserInfo(data.name, data.about, data.avatar);
+});
 
 //CARD  -----------------------------------------------------------
 const cardSelector = document.querySelector("#card-template");
@@ -101,6 +99,7 @@ const previewImagePopup = new PopupWithImage("#preview-image-modal");
 const userInfo = new UserInfo({
   userNameSelector: ".profile__title",
   userTitleSelector: ".profile__description",
+  userPictureSelector: ".profile__image",
 });
 
 // SECTION CLASS-------------------------------------------------------
