@@ -44,10 +44,7 @@ const api = new Api({
   },
 });
 
-console.log(api);
-
 api.getInitialCards().then((data) => {
-  //Promise.resolve(data);
   data.forEach((object) => {
     const name = object.name;
     const link = object.link;
@@ -173,6 +170,7 @@ function handleAddCardSubmit(inputValues) {
     name: addCardTitleInput.value,
     link: addCardImageLinkInput.value,
   };
+  api.createNewCard(newCardData.name, newCardData.link);
   const newCard = createCard(newCardData);
   section.addItem(newCard);
   addCardPopup.close();

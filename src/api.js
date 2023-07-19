@@ -10,7 +10,6 @@ export default class Api {
     return fetch(`${this._baseURL}/cards`, {
       headers: {
         authorization: this._authToken,
-        "Content-Type": this._contentType,
       },
     }).then((res) => {
       if (res.ok) {
@@ -42,20 +41,20 @@ export default class Api {
   }
 
   // - - - - - CREATE NEW CARD - - - - -
-  createNewCard() {
-    return fetch(`${this._baseURL}/cards`, {
-      // do we still use fetch and return here when posting?
-      headers: {
-        authorization: "61d2a1b6-82a5-4ea1-a1a2-2a63d3c4120b",
-        "Content-Type": "application/json",
-        // need to add request body to this one (confirm which line to put it on)
-        // name should contain the name of the created card,
-        // link should contain a link to the image.
-      },
+  createNewCard(nameData, linkData) {
+    fetch(`${this._baseURL}/cards`, {
       method: "POST",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": this._contentType,
+      },
+      body: JSON.stringify({
+        name: nameData,
+        link: linkData,
+      }),
     }).then((res) => {
       if (res.ok) {
-        return res.json(); // what does this return when a post is successful
+        return res.json();
       }
       return Promise.reject(`Error: ${res.status}`);
     });
