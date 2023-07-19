@@ -58,7 +58,8 @@ api.getInitialCards().then((data) => {
 //});
 
 api.getProfileInfo().then((data) => {
-  userInfo.setUserInfo(data.name, data.about, data.avatar);
+  userInfo.setUserInfo(data.name, data.about);
+  userInfo.setUserAvatar(data.avatar);
 });
 
 //CARD  -----------------------------------------------------------
@@ -160,6 +161,7 @@ function handleProfileEditClick() {
 
 function handleEditProfileSubmit(inputValues) {
   userInfo.setUserInfo(profileTitleInput.value, profileDescriptionInput.value);
+  api.editProfileInfo(profileTitleInput.value, profileDescriptionInput.value);
   profileEditPopup.close();
 }
 

@@ -18,4 +18,8 @@ export default class UserInfo {
     this._userTitleElement.textContent = userTitleInput;
     this._userPictureElement.src = userPictureData;
   }
+
+  setUserAvatar(userPictureData) {
+    this._userPictureElement.src = userPictureData;
+  }
 }

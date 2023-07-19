@@ -78,10 +78,33 @@ export default class Api {
 
   // - - - - - EDIT PROFILE NAME/DESCRIPTION - - - - -
 
+  editProfileInfo(nameInput, descriptionInput) {
+    fetch(`${this._baseURL}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": this._contentType,
+      },
+      body: JSON.stringify({
+        name: nameInput,
+        about: descriptionInput,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
   // - - - - - EDIT PROFILE PICTURE - - - - -
 
   // - - - - - ADDING & REMOVING LIKES - - - - -
 }
+
+//Promise.all(promises).then((results) => {
+//  console.log(results); // ["First promise", "Second promise"]
+//});
 
 //const api = new Api({
 //  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
