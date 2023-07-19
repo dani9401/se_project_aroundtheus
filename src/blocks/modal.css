@@ -30,6 +30,10 @@
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
+.modal__container:last-of-type {
+  max-height: 181px;
+}
+
 .modal__close-button {
   background-image: url(../images/Close\ Icon.svg);
   background-size: contain;
