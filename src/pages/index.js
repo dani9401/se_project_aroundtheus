@@ -40,9 +40,11 @@ const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
   headers: {
     authorization: "61d2a1b6-82a5-4ea1-a1a2-2a63d3c4120b",
-    "Content-Type": "application/json",
+    contentType: "application/json",
   },
 });
+
+console.log(api);
 
 api.getInitialCards().then((data) => {
   //Promise.resolve(data);
@@ -50,6 +52,7 @@ api.getInitialCards().then((data) => {
     const name = object.name;
     const link = object.link;
     const newCard = createCard({ name, link });
+
     section.addItem(newCard);
   });
 });
@@ -115,7 +118,7 @@ const section = new Section(
   cardListEl
 );
 
-section.renderItems();
+//section.renderItems();
 
 //console.log(section2);
 //section2.renderItems();
