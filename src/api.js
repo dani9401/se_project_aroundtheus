@@ -83,7 +83,7 @@ export default class Api {
       method: "PATCH",
       headers: {
         authorization: this._authToken,
-        "Content-Type": this._contentType,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name: nameInput,

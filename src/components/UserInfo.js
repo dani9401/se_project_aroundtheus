@@ -13,10 +13,9 @@ export default class UserInfo {
     return userInfo;
   }
 
-  setUserInfo(userNameInput, userTitleInput, userPictureData) {
+  setUserInfo(userNameInput, userTitleInput) {
     this._userNameElement.textContent = userNameInput;
     this._userTitleElement.textContent = userTitleInput;
-    this._userPictureElement.src = userPictureData;
   }
 
   setUserAvatar(userPictureData) {
