@@ -38,8 +38,7 @@ export default class Card {
     });
 
     this._cardDeleteButton.addEventListener("click", () => {
-      this._handleDeleteBinClick();
-      //this._handleCardDelete();
+      this._handleDeleteBinClick(this._cardID);
     });
 
     this._cardImage.addEventListener("click", () => {

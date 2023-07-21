@@ -2,6 +2,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/section.js";
 import "../pages/index.css";
@@ -96,9 +97,9 @@ const profileEditPopup = new PopupWithForm(
 );
 const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
-const deleteCardPopup = new PopupWithForm(
+const deleteCardPopup = new PopupWithConfirmation(
   "#delete-card-modal",
-  handleCardDeleteConfirm
+  handleConfirmButtonSubmit
 );
 
 // USER INFO CLASS-------------------------------------------------------
@@ -140,8 +141,6 @@ const addCardImageLinkInput = document.querySelector("#add-card-link-input");
 //DELETE CARD MODAL-----------------------------------------------------
 
 const confirmDeleteButton = document.querySelector("#delete-image-submit");
-
-console.log(confirmDeleteButton);
 
 //EVENT LISTENERS------------------------------------------------------
 profileEditPopup.setEventListeners();
@@ -203,12 +202,16 @@ function handleCardClick(cardData) {
   previewImagePopup.open(cardData);
 }
 
-function handleDeleteBinClick() {
-  deleteCardPopup.open();
+function handleDeleteBinClick(cardID) {
+  deleteCardPopup.open(cardID);
+  deleteCardPopup.setSubmitAction(() => {
+    //describe api interaction
+    //api.deleteCard
+    //   .then
+    //   .catch etc
+  });
 }
 
-function handleCardDeleteConfirm() {
-  //api.deleteCard(cardID);
-  //api.deleteCard call
-  // then calls handleCardDelete in Card class
+function handleConfirmButtonSubmit() {
+  // wat
 }
