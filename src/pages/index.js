@@ -48,8 +48,9 @@ api.getInitialCards().then((data) => {
   data.forEach((object) => {
     const name = object.name;
     const link = object.link;
-    const newCard = createCard({ name, link });
+    const cardID = object._id;
 
+    const newCard = createCard(name, link, cardID);
     section.addItem(newCard);
   });
 });
@@ -95,6 +96,10 @@ const profileEditPopup = new PopupWithForm(
 );
 const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
+const deleteCardPopup = new PopupWithForm(
+  "#delete-card-modal",
+  handleCardDeleteConfirm
+);
 
 // USER INFO CLASS-------------------------------------------------------
 const userInfo = new UserInfo({
@@ -132,10 +137,17 @@ const addCardButton = document.querySelector("#add-card-button");
 const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
 const addCardImageLinkInput = document.querySelector("#add-card-link-input");
 
+//DELETE CARD MODAL-----------------------------------------------------
+
+const confirmDeleteButton = document.querySelector("#delete-image-submit");
+
+console.log(confirmDeleteButton);
+
 //EVENT LISTENERS------------------------------------------------------
 profileEditPopup.setEventListeners();
 addCardPopup.setEventListeners();
 previewImagePopup.setEventListeners();
+deleteCardPopup.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
   handleProfileEditClick();
@@ -146,9 +158,20 @@ addCardButton.addEventListener("click", () => {
   addCardPopup.open();
 });
 
+confirmDeleteButton.addEventListener("submit", () => {
+  handleCardDeleteConfirm();
+});
+
 //FUNCTIONS & EVENT HANDLERS----------------------------------------------
-function createCard(cardData) {
-  const card = new Card(cardData, cardSelector, handleCardClick);
+function createCard(name, link, cardID) {
+  const card = new Card(
+    name,
+    link,
+    cardID,
+    cardSelector,
+    handleCardClick,
+    handleDeleteBinClick
+  );
   return card.getView();
 }
 
@@ -178,4 +201,14 @@ function handleAddCardSubmit(inputValues) {
 
 function handleCardClick(cardData) {
   previewImagePopup.open(cardData);
+}
+
+function handleDeleteBinClick() {
+  deleteCardPopup.open();
+}
+
+function handleCardDeleteConfirm() {
+  //api.deleteCard(cardID);
+  //api.deleteCard call
+  // then calls handleCardDelete in Card class
 }

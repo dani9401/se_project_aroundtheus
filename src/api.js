@@ -21,16 +21,16 @@ export default class Api {
   }
 
   // - - - - - DELETE CARD - - - - -
-  deleteCard(id) {
+  deleteCard(cardID) {
     return fetch(
       //"https://around.nomoreparties.co/v1/cohort-3-en/cards",
-      `${this._baseURL}/${id}`,
+      `${this._baseURL}/cards/${cardID}`,
       {
+        method: "DELETE",
         headers: {
           authorization: "61d2a1b6-82a5-4ea1-a1a2-2a63d3c4120b",
           "Content-Type": "application/json",
         },
-        method: "DELETE",
       }
     ).then((res) => {
       if (res.ok) {
