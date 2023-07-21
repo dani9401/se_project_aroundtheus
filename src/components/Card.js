@@ -1,11 +1,20 @@
 //CARD CLASS ------------------------------------------------------------
 
 export default class Card {
-  constructor(initialCards, cardSelector, handleCardClick) {
-    this._name = initialCards.name;
-    this._link = initialCards.link;
+  constructor(
+    name,
+    link,
+    cardID,
+    cardSelector,
+    handleCardClick,
+    handleDeleteBinClick
+  ) {
+    this._name = name;
+    this._link = link;
+    this._cardID = cardID;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteBinClick = handleDeleteBinClick;
   }
 
   // - - - - - - Event Handlers - - - - - -
@@ -13,10 +22,14 @@ export default class Card {
     this._cardLikeButton.classList.toggle("gallery__card-like-button_active");
   }
 
-  _handleCardDelete() {
+  handleCardDelete() {
     this._cardElement.remove();
     this._cardElement = null;
   }
+
+  //handleBinIconClickEvent() {
+  //  this._cardDeleteButton.addEventListener("click", () => {});
+  //}
 
   // - - - - - - Event Listeners - - - - - -
   _setEventListeners() {
@@ -25,7 +38,8 @@ export default class Card {
     });
 
     this._cardDeleteButton.addEventListener("click", () => {
-      this._handleCardDelete();
+      this._handleDeleteBinClick();
+      //this._handleCardDelete();
     });
 
     this._cardImage.addEventListener("click", () => {
