@@ -157,10 +157,6 @@ addCardButton.addEventListener("click", () => {
   addCardPopup.open();
 });
 
-confirmDeleteButton.addEventListener("submit", () => {
-  handleCardDeleteConfirm();
-});
-
 //FUNCTIONS & EVENT HANDLERS----------------------------------------------
 function createCard(name, link, cardID) {
   const card = new Card(
@@ -203,10 +199,12 @@ function handleCardClick(cardData) {
 }
 
 function handleDeleteBinClick(cardID) {
-  deleteCardPopup.open(cardID);
+  deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
-    //describe api interaction
-    //api.deleteCard
+    api.deleteCard(card).then((res) => {
+      console.log(res);
+      console.log("helloz");
+    });
     //   .then
     //   .catch etc
   });
