@@ -40,13 +40,10 @@ export default class Card {
       this._handleLikeIconClick();
     });
 
-    if (!this._ownerID === this._myID) {
-      this._cardDeleteButton.remove;
-    } else {
-      this._cardDeleteButton.addEventListener("click", () => {
-        this._handleDeleteBinClick(this._cardID);
-      });
-    }
+    this._cardDeleteButton.add;
+    this._cardDeleteButton.addEventListener("click", () => {
+      this._handleDeleteBinClick(this._cardID);
+    });
 
     this._cardImage.addEventListener("click", () => {
       const cardData = {
@@ -82,6 +79,10 @@ export default class Card {
     this._cardImage.alt = this._name;
 
     this._setEventListeners();
+
+    if (this._ownerID !== this._myID) {
+      this._cardDeleteButton.remove();
+    }
 
     return this._cardElement;
   }

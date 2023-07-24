@@ -181,7 +181,6 @@ function createCard(name, link, cardID, ownerID) {
     handleCardClick,
     handleDeleteBinClick
   );
-  console.log(card);
   return card.getView();
 }
 
