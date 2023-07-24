@@ -50,8 +50,9 @@ api.getInitialCards().then((data) => {
     const name = object.name;
     const link = object.link;
     const cardID = object._id;
+    const ownerID = object.owner._id;
 
-    const newCard = createCard(name, link, cardID);
+    const newCard = createCard(name, link, cardID, ownerID);
     section.addItem(newCard);
   });
 });
@@ -63,6 +64,10 @@ api.getProfileInfo().then((data) => {
   userInfo.setUserInfo(data.name, data.about);
   userInfo.setUserAvatar(data.avatar);
 });
+
+//getAppInfo() {
+//  return Promise.all([this.getCards(), this.getUser()]);
+// }
 
 //CARD  -----------------------------------------------------------
 const cardSelector = document.querySelector("#card-template");
@@ -158,11 +163,12 @@ addCardButton.addEventListener("click", () => {
 });
 
 //FUNCTIONS & EVENT HANDLERS----------------------------------------------
-function createCard(name, link, cardID) {
+function createCard(name, link, cardID, ownerID) {
   const card = new Card(
     name,
     link,
     cardID,
+    ownerID,
     cardSelector,
     handleCardClick,
     handleDeleteBinClick
@@ -201,15 +207,19 @@ function handleCardClick(cardData) {
 function handleDeleteBinClick(cardID) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
-    api.deleteCard(card).then((res) => {
-      console.log(res);
-      console.log("helloz");
+    api.deleteCard(cardID).then((res) => {
+      deleteCardPopup.close();
+      this.handleCardDelete();
     });
-    //   .then
-    //   .catch etc
+    //.catch((err) => {
+    //  console.log(err)
+    // })
+    //.finally
+    //
   });
 }
 
 function handleConfirmButtonSubmit() {
+  console.log("another clicky submitty");
   // wat
 }
