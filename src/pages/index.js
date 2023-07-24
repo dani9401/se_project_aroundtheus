@@ -57,16 +57,22 @@ api.getInitialCards().then((data) => {
   });
 });
 //.catch((err) => {
-//  console.error(err); // log the error to the console
-//});
+//  console.error("Error. The request has failed: ", err)})
+// })
+//.finally
+//
 
 api.getProfileInfo().then((data) => {
   userInfo.setUserInfo(data.name, data.about);
   userInfo.setUserAvatar(data.avatar);
 });
+//.catch((err) => {
+//  console.error("Error. The request has failed: ", err)})
+//.finally
+//
 
 //getAppInfo() {
-//  return Promise.all([this.getCards(), this.getUser()]);
+//  return Promise.all([this.getInitialCards(), this.getProfileInfo()]);
 // }
 
 //CARD  -----------------------------------------------------------
@@ -142,6 +148,7 @@ const profileDescriptionInput = document.querySelector(
 const addCardButton = document.querySelector("#add-card-button");
 const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
 const addCardImageLinkInput = document.querySelector("#add-card-link-input");
+const myID = "5b0dca03a3b5418a56e37bd7";
 
 //DELETE CARD MODAL-----------------------------------------------------
 
@@ -169,10 +176,12 @@ function createCard(name, link, cardID, ownerID) {
     link,
     cardID,
     ownerID,
+    myID,
     cardSelector,
     handleCardClick,
     handleDeleteBinClick
   );
+  console.log(card);
   return card.getView();
 }
 
@@ -212,7 +221,7 @@ function handleDeleteBinClick(cardID) {
       this.handleCardDelete();
     });
     //.catch((err) => {
-    //  console.log(err)
+    //  console.error("Error. The request has failed: ", err)})
     // })
     //.finally
     //

@@ -6,6 +6,7 @@ export default class Card {
     link,
     cardID,
     ownerID,
+    myID,
     cardSelector,
     handleCardClick,
     handleDeleteBinClick
@@ -14,8 +15,7 @@ export default class Card {
     this._link = link;
     this._cardID = cardID;
     this._ownerID = ownerID;
-    this._myID = "5b0dca03a3b5418a56e37bd7";
-    this._cardSelector = cardSelector;
+    (this._myID = myID), (this._cardSelector = cardSelector);
     this._handleCardClick = handleCardClick;
     this._handleDeleteBinClick = handleDeleteBinClick;
   }
@@ -40,10 +40,13 @@ export default class Card {
       this._handleLikeIconClick();
     });
 
-    //if (!this._ownerID === this._myID)
-    this._cardDeleteButton.addEventListener("click", () => {
-      this._handleDeleteBinClick(this._cardID);
-    });
+    if (!this._ownerID === this._myID) {
+      this._cardDeleteButton.remove;
+    } else {
+      this._cardDeleteButton.addEventListener("click", () => {
+        this._handleDeleteBinClick(this._cardID);
+      });
+    }
 
     this._cardImage.addEventListener("click", () => {
       const cardData = {
