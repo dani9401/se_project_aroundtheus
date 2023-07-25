@@ -4,13 +4,35 @@
   padding-top: 40px;
 }
 
+.profile__avatar-container {
+  position: relative;
+  margin-right: 24px;
+}
+
 .profile__image {
   height: 120px;
   width: 120px;
   border-radius: 50%;
   object-fit: cover;
   background-position: center;
-  margin-right: 24px;
+}
+
+.profile__avatar-button {
+  position: absolute;
+  background: url(../images/EditProfilePictureIcon.svg) center no-repeat
+    transparent;
+  height: 120px;
+  width: 120px;
+  opacity: 0;
+  left: 0px;
+  background-color: #000;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.profile__avatar-button:hover {
+  opacity: 0.7;
 }
 
 .profile__info {

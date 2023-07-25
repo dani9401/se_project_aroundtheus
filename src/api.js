@@ -71,7 +71,6 @@ export default class Api {
   }
 
   // - - - - - EDIT PROFILE NAME/DESCRIPTION - - - - -
-
   editProfileInfo(nameInput, descriptionInput) {
     fetch(`${this._baseURL}/users/me`, {
       method: "PATCH",
@@ -92,11 +91,43 @@ export default class Api {
   }
 
   // - - - - - EDIT PROFILE PICTURE - - - - -
+  editProfilePicture(avatarLink) {
+    fetch(`${this._baseURL}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": this._contentType,
+      },
+      body: JSON.stringify({
+        avatar: avatarLink,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 
   // - - - - - ADDING & REMOVING LIKES - - - - -
   addCardLike(cardID) {
     fetch(`${this._baseURL}/cards/likes/${cardID}`, {
       method: "PUT",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": this._contentType,
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  deleteCardLike(cardID) {
+    fetch(`${this._baseURL}/cards/likes/${cardID}`, {
+      method: "DELETE",
       headers: {
         authorization: this._authToken,
         "Content-Type": this._contentType,
