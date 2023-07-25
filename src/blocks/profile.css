@@ -29,6 +29,7 @@
   border: none;
   cursor: pointer;
   transition: opacity 0.5s ease-in-out;
+  border-radius: 50%;
 }
 
 .profile__avatar-button:hover {
