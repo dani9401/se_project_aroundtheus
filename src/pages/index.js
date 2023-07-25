@@ -206,7 +206,7 @@ function handleEditAvatarClick() {
 
 function handleEditAvatarSubmit(inputValue) {
   userInfo.setUserAvatar(avatarImageLinkInput.value);
-  //make api call
+  api.editProfilePicture(avatarImageLinkInput.value);
   editAvatarPopup.close();
 }
 
