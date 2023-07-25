@@ -94,6 +94,20 @@ export default class Api {
   // - - - - - EDIT PROFILE PICTURE - - - - -
 
   // - - - - - ADDING & REMOVING LIKES - - - - -
+  addCardLike(cardID) {
+    fetch(`${this._baseURL}/cards/likes/${cardID}`, {
+      method: "PUT",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": this._contentType,
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }
 
 //Promise.all(promises).then((results) => {

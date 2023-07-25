@@ -49,10 +49,11 @@ api.getInitialCards().then((data) => {
   data.forEach((object) => {
     const name = object.name;
     const link = object.link;
+    const cardLikes = object.likes;
     const cardID = object._id;
     const ownerID = object.owner._id;
 
-    const newCard = createCard(name, link, cardID, ownerID);
+    const newCard = createCard(name, link, cardLikes, cardID, ownerID);
     section.addItem(newCard);
   });
 });
@@ -170,16 +171,18 @@ addCardButton.addEventListener("click", () => {
 });
 
 //FUNCTIONS & EVENT HANDLERS----------------------------------------------
-function createCard(name, link, cardID, ownerID) {
+function createCard(name, link, cardLikes, cardID, ownerID) {
   const card = new Card(
     name,
     link,
+    cardLikes,
     cardID,
     ownerID,
     myID,
     cardSelector,
     handleCardClick,
-    handleDeleteBinClick
+    handleDeleteBinClick,
+    handleAddingLike
   );
   return card.getView();
 }
@@ -228,6 +231,11 @@ function handleDeleteBinClick(cardID) {
 }
 
 function handleConfirmButtonSubmit() {
-  console.log("another clicky submitty");
-  // wat
+  console.log("another submit");
+}
+
+function handleAddingLike(cardID) {
+  api.addCardLike(this._cardID).then((res) => {
+    console.log(res);
+  });
 }

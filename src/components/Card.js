@@ -4,25 +4,30 @@ export default class Card {
   constructor(
     name,
     link,
+    cardLikes,
     cardID,
     ownerID,
     myID,
     cardSelector,
     handleCardClick,
-    handleDeleteBinClick
+    handleDeleteBinClick,
+    handleAddingLike
   ) {
     this._name = name;
     this._link = link;
+    this._cardLikes = cardLikes;
     this._cardID = cardID;
     this._ownerID = ownerID;
     (this._myID = myID), (this._cardSelector = cardSelector);
     this._handleCardClick = handleCardClick;
     this._handleDeleteBinClick = handleDeleteBinClick;
+    this._handleAddingLike = handleAddingLike;
   }
 
   // - - - - - - Event Handlers - - - - - -
   _handleLikeIconClick() {
     this._cardLikeButton.classList.toggle("gallery__card-like-button_active");
+    this._handleAddingLike(this.cardID);
   }
 
   handleCardDelete() {
@@ -30,9 +35,13 @@ export default class Card {
     this._cardElement = null;
   }
 
-  //handleBinIconClickEvent() {
-  //  this._cardDeleteButton.addEventListener("click", () => {});
-  //}
+  _renderActiveLikeButton() {
+    this._cardLikes.forEach((like) => {
+      if (like._id === this._myID) {
+        this._cardLikeButton.classList.add("gallery__card-like-button_active");
+      }
+    });
+  }
 
   // - - - - - - Event Listeners - - - - - -
   _setEventListeners() {
@@ -40,7 +49,6 @@ export default class Card {
       this._handleLikeIconClick();
     });
 
-    this._cardDeleteButton.add;
     this._cardDeleteButton.addEventListener("click", () => {
       this._handleDeleteBinClick(this._cardID);
     });
@@ -70,6 +78,10 @@ export default class Card {
     this._cardLikeButton = this._cardElement.querySelector(
       ".gallery__card-like-button"
     );
+    this._cardLikeCounter = this._cardElement.querySelector(
+      ".gallery__card-like-count"
+    );
+
     this._cardDeleteButton = this._cardElement.querySelector(
       ".gallery__card-delete-button"
     );
@@ -77,8 +89,10 @@ export default class Card {
     this._cardTitle.textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
+    this._cardLikeCounter.textContent = this._cardLikes.length;
 
     this._setEventListeners();
+    this._renderActiveLikeButton();
 
     if (this._ownerID !== this._myID) {
       this._cardDeleteButton.remove();
