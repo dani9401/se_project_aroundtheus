@@ -52,7 +52,6 @@ api.getInitialCards().then((data) => {
     const cardLikes = object.likes;
     const cardID = object._id;
     const ownerID = object.owner._id;
-
     const newCard = createCard(name, link, cardLikes, cardID, ownerID);
     section.addItem(newCard);
   });
@@ -93,6 +92,7 @@ const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardForm = addCardModal.querySelector("#modal-add-form");
 const editAvatarModal = document.querySelector("#edit-avatar-modal");
+const editAvatarForm = document.querySelector("#modal-edit-avatar-form");
 
 const editProfileFormValidator = new FormValidator(
   validationSettings,
@@ -100,8 +100,14 @@ const editProfileFormValidator = new FormValidator(
 );
 const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
 
+const editAvatarFormValidator = new FormValidator(
+  validationSettings,
+  editAvatarForm
+);
+
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
+editAvatarFormValidator.enableValidation();
 
 // POPUP CLASS-------------------------------------------------------
 const profileEditPopup = new PopupWithForm(
