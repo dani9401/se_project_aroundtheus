@@ -182,7 +182,8 @@ function createCard(name, link, cardLikes, cardID, ownerID) {
     cardSelector,
     handleCardClick,
     handleDeleteBinClick,
-    handleAddingLike
+    handleAddingLike,
+    handleRemovingLike
   );
   return card.getView();
 }
@@ -236,6 +237,12 @@ function handleConfirmButtonSubmit() {
 
 function handleAddingLike(cardID) {
   api.addCardLike(this._cardID).then((res) => {
+    console.log(res);
+  });
+}
+
+function handleRemovingLike(cardID) {
+  api.deleteCardLike(this._cardID).then((res) => {
     console.log(res);
   });
 }

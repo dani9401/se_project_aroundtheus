@@ -11,7 +11,8 @@ export default class Card {
     cardSelector,
     handleCardClick,
     handleDeleteBinClick,
-    handleAddingLike
+    handleAddingLike,
+    handleRemovingLike
   ) {
     this._name = name;
     this._link = link;
@@ -22,12 +23,18 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleDeleteBinClick = handleDeleteBinClick;
     this._handleAddingLike = handleAddingLike;
+    this._handleRemovingLike = handleRemovingLike;
   }
 
   // - - - - - - Event Handlers - - - - - -
-  _handleLikeIconClick() {
-    this._cardLikeButton.classList.toggle("gallery__card-like-button_active");
-    this._handleAddingLike(this.cardID);
+  _cardHasBeenLiked() {
+    this._cardLikeButton.classList.add("gallery__card-like-button_active");
+    this._handleAddingLike(this._cardID);
+  }
+
+  _cardHasBeenUnliked() {
+    this._cardLikeButton.classList.remove("gallery__card-like-button_active");
+    this._handleRemovingLike(this._cardID);
   }
 
   handleCardDelete() {
@@ -45,8 +52,12 @@ export default class Card {
 
   // - - - - - - Event Listeners - - - - - -
   _setEventListeners() {
-    this._cardLikeButton.addEventListener("click", () => {
-      this._handleLikeIconClick();
+    this._cardLikeButton.addEventListener("click", (e) => {
+      if (e.target.classList.contains("gallery__card-like-button_active")) {
+        this._cardHasBeenUnliked();
+      } else {
+        this._cardHasBeenLiked();
+      }
     });
 
     this._cardDeleteButton.addEventListener("click", () => {
