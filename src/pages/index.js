@@ -92,6 +92,7 @@ const addCardModal = document.querySelector("#add-card-modal");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardForm = addCardModal.querySelector("#modal-add-form");
+const editAvatarModal = document.querySelector("#edit-avatar-modal");
 
 const editProfileFormValidator = new FormValidator(
   validationSettings,
@@ -108,6 +109,10 @@ const profileEditPopup = new PopupWithForm(
   handleEditProfileSubmit
 );
 const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
+const editAvatarPopup = new PopupWithForm(
+  "#edit-avatar-modal",
+  handleEditAvatarSubmit
+);
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
 const deleteCardPopup = new PopupWithConfirmation(
   "#delete-card-modal",
@@ -140,6 +145,8 @@ const section = new Section(
 
 //PROFILE EDIT MODAL-------------------------------------------------
 const profileEditButton = document.querySelector("#profile-edit-button");
+const avatarEditButton = document.querySelector(".profile__avatar-button");
+const avatarImageLinkInput = document.querySelector("#edit-avatar-link-input");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
@@ -160,6 +167,11 @@ profileEditPopup.setEventListeners();
 addCardPopup.setEventListeners();
 previewImagePopup.setEventListeners();
 deleteCardPopup.setEventListeners();
+editAvatarPopup.setEventListeners();
+
+avatarEditButton.addEventListener("click", () => {
+  handleEditAvatarClick();
+});
 
 profileEditButton.addEventListener("click", () => {
   handleProfileEditClick();
@@ -186,6 +198,16 @@ function createCard(name, link, cardLikes, cardID, ownerID) {
     handleRemovingLike
   );
   return card.getView();
+}
+
+function handleEditAvatarClick() {
+  editAvatarPopup.open();
+}
+
+function handleEditAvatarSubmit(inputValue) {
+  userInfo.setUserAvatar(avatarImageLinkInput.value);
+  //make api call
+  editAvatarPopup.close();
 }
 
 function handleProfileEditClick() {
