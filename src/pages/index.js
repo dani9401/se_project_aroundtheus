@@ -45,27 +45,51 @@ const api = new Api({
   },
 });
 
-api.getInitialCards().then((data) => {
-  data.forEach((object) => {
-    const name = object.name;
-    const link = object.link;
-    const cardLikes = object.likes;
-    const cardID = object._id;
-    const ownerID = object.owner._id;
-    const newCard = createCard(name, link, cardLikes, cardID, ownerID);
-    section.addItem(newCard);
-  });
-});
+Promise.all([api.getProfileInfo(), api.getInitialCards()])
+  .then(([userData, cardData]) => {
+    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserAvatar(userData.avatar);
+    const cardListSection = new Section(
+      {
+        items: cardData,
+        renderer: (data) => {
+          const newCard = createCard(
+            data.name,
+            data.link,
+            data.likes,
+            data._id,
+            data.owner._id
+          );
+          cardListSection.addItem(newCard);
+        },
+      },
+      cardListEl
+    );
+    cardListSection.renderItems();
+  })
+  .catch(console.error);
+
+//api.getInitialCards().then((data) => {
+//  data.forEach((object) => {
+//    const name = object.name;
+//    const link = object.link;
+//    const cardLikes = object.likes;
+//    const cardID = object._id;
+//    const ownerID = object.owner._id;
+//    const newCard = createCard(name, link, cardLikes, cardID, ownerID);
+//    section.addItem(newCard);
+//  });
+//});
 //.catch((err) => {
 //  console.error("Error. The request has failed: ", err)})
 // })
 //.finally
 //
 
-api.getProfileInfo().then((data) => {
-  userInfo.setUserInfo(data.name, data.about);
-  userInfo.setUserAvatar(data.avatar);
-});
+//api.getProfileInfo().then((data) => {
+//  userInfo.setUserInfo(data.name, data.about);
+//  userInfo.setUserAvatar(data.avatar);
+//});
 //.catch((err) => {
 //  console.error("Error. The request has failed: ", err)})
 //.finally
@@ -115,6 +139,7 @@ const profileEditPopup = new PopupWithForm(
   handleEditProfileSubmit
 );
 const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
+
 const editAvatarPopup = new PopupWithForm(
   "#edit-avatar-modal",
   handleEditAvatarSubmit
@@ -133,16 +158,16 @@ const userInfo = new UserInfo({
 });
 
 // SECTION CLASS-------------------------------------------------------
-const section = new Section(
-  {
-    items: initialCards,
-    renderer: (cardData) => {
-      const card = createCard(cardData);
-      section.addItem(card);
-    },
-  },
-  cardListEl
-);
+//const section = new Section(
+//  {
+//    items: initialCards,
+//    renderer: (cardData) => {
+//    const card = createCard(cardData);
+//  section.addItem(card);
+//  },
+//},
+//cardListEl
+//);
 
 //section.renderItems();
 
