@@ -265,9 +265,22 @@ function handleAddCardSubmit(inputValues) {
     name: addCardTitleInput.value,
     link: addCardImageLinkInput.value,
   };
-  api.createNewCard(newCardData.name, newCardData.link);
-  const newCard = createCard(newCardData);
-  section.addItem(newCard);
+  api
+    .createNewCard(newCardData.name, newCardData.link)
+    .then((res) => {
+      const newCard = {
+        name: res.name,
+        link: res.link,
+        cardLikes: res.likes,
+        cardID: res._id,
+        ownerID: res.owner._id,
+      };
+      createCard(newCard);
+      section.addItem(newCard);
+    })
+    .then((res) => renderLoading(doneLoading))
+    .catch(console.error);
+  //const newCard = createCard(newCardData);
   addCardPopup.close();
 }
 
