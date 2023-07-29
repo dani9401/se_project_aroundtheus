@@ -249,12 +249,12 @@ function handleProfileEditClick() {
 }
 
 function handleEditProfileSubmit(inputValues) {
-  PopupWithForm.renderLoading(isLoading);
+  this.renderLoading(isLoading);
   userInfo.setUserInfo(profileTitleInput.value, profileDescriptionInput.value);
   api
     .editProfileInfo(profileTitleInput.value, profileDescriptionInput.value)
     .then(() => {
-      PopupWithForm.renderLoading(doneLoading);
+      this.renderLoading(doneLoading);
     });
   profileEditPopup.close();
 }

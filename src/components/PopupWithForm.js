@@ -7,18 +7,14 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._submitButtonText = this._popupElement.querySelector(
       ".modal__save-button"
-    ).textcontent;
+    ).textContent;
   }
 
   renderLoading(loadingStatus) {
-    if (isLoading) {
-      // Change button text to 'Saving...'
+    if (loadingStatus.isLoading) {
       this._submitButtonText = "Saving...";
     } else {
-      // Change button text to default text
-      this._submitButtonText = document.querySelector(
-        ".modal__save-button"
-      ).textContent;
+      this._submitButtonText = this._submitButtonText;
     }
   }
 
