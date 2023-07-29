@@ -249,12 +249,18 @@ function handleProfileEditClick() {
 }
 
 function handleEditProfileSubmit(inputValues) {
+  PopupWithForm.renderLoading(isLoading);
   userInfo.setUserInfo(profileTitleInput.value, profileDescriptionInput.value);
-  api.editProfileInfo(profileTitleInput.value, profileDescriptionInput.value);
+  api
+    .editProfileInfo(profileTitleInput.value, profileDescriptionInput.value)
+    .then(() => {
+      PopupWithForm.renderLoading(doneLoading);
+    });
   profileEditPopup.close();
 }
 
 function handleAddCardSubmit(inputValues) {
+  // call renderLoading();
   const newCardData = {
     name: addCardTitleInput.value,
     link: addCardImageLinkInput.value,
