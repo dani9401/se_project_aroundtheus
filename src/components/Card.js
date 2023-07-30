@@ -17,9 +17,11 @@ export default class Card {
     this._name = name;
     this._link = link;
     this._cardLikes = cardLikes;
+    this._cardLikesCount = cardLikes.length;
     this._cardID = cardID;
     this._ownerID = ownerID;
-    (this._myID = myID), (this._cardSelector = cardSelector);
+    this._myID = myID;
+    this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteBinClick = handleDeleteBinClick;
     this._handleAddingLike = handleAddingLike;
@@ -100,7 +102,7 @@ export default class Card {
     this._cardTitle.textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    this._cardLikeCounter.textContent = this._cardLikes.length;
+    this._cardLikeCounter.textContent = this._cardLikesCount;
 
     this._setEventListeners();
     this._renderActiveLikeButton();

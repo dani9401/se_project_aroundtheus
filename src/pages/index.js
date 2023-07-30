@@ -228,6 +228,7 @@ function createCard(name, link, cardLikes, cardID, ownerID) {
     handleAddingLike,
     handleRemovingLike
   );
+  console.log(card);
   return card.getView();
 }
 
@@ -260,7 +261,8 @@ function handleEditProfileSubmit(inputValues) {
 }
 
 function handleAddCardSubmit(inputValues) {
-  this.renderLoading(true);
+  //addCardPopup.renderLoading(true);
+  //this.renderLoading(true);
   const newCardData = {
     name: addCardTitleInput.value,
     link: addCardImageLinkInput.value,
@@ -268,15 +270,15 @@ function handleAddCardSubmit(inputValues) {
   api
     .createNewCard(newCardData.name, newCardData.link)
     .then((res) => {
-      const newCard = {
-        name: res.name,
-        link: res.link,
-        cardLikes: res.likes,
-        cardID: res._id,
-        ownerID: res.owner._id,
-      };
-      console.log(newCard);
-      createCard(newCard);
+      const newCard = createCard(res);
+      //const newCard = {
+      //  name: res.name,
+      //  link: res.link,
+      //  cardLikes: res.likes,
+      //  cardID: res._id,
+      //  ownerID: res.owner._id,
+      //};
+      //createCard(newCard);
       section.addItem(newCard);
     })
     .then((res) => this.renderLoading(false))
