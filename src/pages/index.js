@@ -249,18 +249,18 @@ function handleProfileEditClick() {
 }
 
 function handleEditProfileSubmit(inputValues) {
-  this.renderLoading(isLoading);
+  this.renderLoading(true);
   userInfo.setUserInfo(profileTitleInput.value, profileDescriptionInput.value);
   api
     .editProfileInfo(profileTitleInput.value, profileDescriptionInput.value)
     .then(() => {
-      this.renderLoading(doneLoading);
+      this.renderLoading(false);
     });
   profileEditPopup.close();
 }
 
 function handleAddCardSubmit(inputValues) {
-  // call renderLoading();
+  this.renderLoading(true);
   const newCardData = {
     name: addCardTitleInput.value,
     link: addCardImageLinkInput.value,
@@ -275,10 +275,11 @@ function handleAddCardSubmit(inputValues) {
         cardID: res._id,
         ownerID: res.owner._id,
       };
+      console.log(newCard);
       createCard(newCard);
       section.addItem(newCard);
     })
-    .then((res) => renderLoading(doneLoading))
+    .then((res) => this.renderLoading(false))
     .catch(console.error);
   //const newCard = createCard(newCardData);
   addCardPopup.close();

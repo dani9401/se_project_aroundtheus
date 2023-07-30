@@ -37,7 +37,7 @@ export default class Api {
 
   // - - - - - CREATE NEW CARD - - - - -
   createNewCard(nameData, linkData) {
-    fetch(`${this._baseURL}/cards`, {
+    return fetch(`${this._baseURL}/cards`, {
       method: "POST",
       headers: {
         authorization: this._authToken,
@@ -72,7 +72,7 @@ export default class Api {
 
   // - - - - - EDIT PROFILE NAME/DESCRIPTION - - - - -
   editProfileInfo(nameInput, descriptionInput) {
-    fetch(`${this._baseURL}/users/me`, {
+    return fetch(`${this._baseURL}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: this._authToken,
@@ -92,7 +92,7 @@ export default class Api {
 
   // - - - - - EDIT PROFILE PICTURE - - - - -
   editProfilePicture(avatarLink) {
-    fetch(`${this._baseURL}/users/me/avatar`, {
+    return fetch(`${this._baseURL}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._authToken,
