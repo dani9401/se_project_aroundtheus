@@ -9,33 +9,6 @@ import "../pages/index.css";
 import "../api.js";
 import Api from "../api.js";
 
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
-
 //API  -----------------------------------------------------------
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
@@ -132,13 +105,22 @@ editAvatarFormValidator.enableValidation();
 // POPUP CLASS-------------------------------------------------------
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
-  handleEditProfileSubmit
+  handleEditProfileSubmit,
+  "Save",
+  "Saving..."
 );
-const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
+const addCardPopup = new PopupWithForm(
+  "#add-card-modal",
+  handleAddCardSubmit,
+  "Save",
+  "Saving..."
+);
 
 const editAvatarPopup = new PopupWithForm(
   "#edit-avatar-modal",
-  handleEditAvatarSubmit
+  handleEditAvatarSubmit,
+  "Save",
+  "Saving..."
 );
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
 const deleteCardPopup = new PopupWithConfirmation(
@@ -184,6 +166,9 @@ const addCardButton = document.querySelector("#add-card-button");
 const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
 const addCardImageLinkInput = document.querySelector("#add-card-link-input");
 const myID = "5b0dca03a3b5418a56e37bd7";
+const addCardSubmitButtonText = addCardModal.querySelector(
+  ".modal__save-button"
+).textContent;
 
 //const allAddCardModalInputs = addCardModal.querySelectorAll(".modal__input");
 //console.log(Array.from(allAddCardModalInputs));
@@ -200,6 +185,7 @@ deleteCardPopup.setEventListeners();
 editAvatarPopup.setEventListeners();
 
 avatarEditButton.addEventListener("click", () => {
+  editAvatarFormValidator.disableButton();
   handleEditAvatarClick();
 });
 
@@ -235,9 +221,17 @@ function handleEditAvatarClick() {
 }
 
 function handleEditAvatarSubmit(inputValue) {
-  userInfo.setUserAvatar(inputValue.link);
-  api.editProfilePicture(inputValue.link);
-  editAvatarPopup.close();
+  editAvatarPopup.showLoading();
+  api
+    .editProfilePicture(inputValue.link)
+    .then(() => {
+      userInfo.setUserAvatar(inputValue.link);
+      editAvatarPopup.hideLoading();
+    })
+    .catch(console.error)
+    .finally(() => {
+      editAvatarPopup.close();
+    });
 }
 
 function handleProfileEditClick() {
@@ -248,25 +242,34 @@ function handleProfileEditClick() {
 }
 
 function handleEditProfileSubmit(inputValues) {
-  profileEditPopup.renderLoading(true);
-  userInfo.setUserInfo(inputValues.title, inputValues.description);
-  api.editProfileInfo(inputValues.title, inputValues.description).then(() => {
-    this.renderLoading(false);
-  });
-  profileEditPopup.close();
+  profileEditPopup.showLoading();
+  api
+    .editProfileInfo(inputValues.title, inputValues.description)
+    .then(() => {
+      userInfo.setUserInfo(inputValues.title, inputValues.description);
+      profileEditPopup.hideLoading();
+    })
+    .catch(console.error)
+    .finally(() => {
+      profileEditPopup.close();
+    });
 }
 
 function handleAddCardSubmit(inputValues) {
-  addCardPopup.renderLoading(true);
+  addCardPopup.showLoading();
   api
     .createNewCard(inputValues.title, inputValues.link)
     .then((res) => {
       const newCard = createCard(res);
       cardListSection.addItem(newCard);
     })
-    .then((res) => this.renderLoading(false))
-    .catch(console.error);
-  addCardPopup.close();
+    .then((res) => {
+      addCardPopup.hideLoading();
+    })
+    .catch(console.error)
+    .finally(() => {
+      addCardPopup.close();
+    });
 }
 
 function handleCardClick(cardData) {
