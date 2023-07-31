@@ -38,32 +38,6 @@ Promise.all([api.getProfileInfo(), api.getInitialCards()])
   })
   .catch(console.error);
 
-//api.getInitialCards().then((data) => {
-//  data.forEach((object) => {
-//    const name = object.name;
-//    const link = object.link;
-//    const cardLikes = object.likes;
-//    const cardID = object._id;
-//    const ownerID = object.owner._id;
-//    const newCard = createCard(name, link, cardLikes, cardID, ownerID);
-//    section.addItem(newCard);
-//  });
-//});
-//.catch((err) => {
-//  console.error("Error. The request has failed: ", err)})
-// })
-//.finally
-//
-
-//api.getProfileInfo().then((data) => {
-//  userInfo.setUserInfo(data.name, data.about);
-//  userInfo.setUserAvatar(data.avatar);
-//});
-//.catch((err) => {
-//  console.error("Error. The request has failed: ", err)})
-//.finally
-//
-
 //getAppInfo() {
 //  return Promise.all([this.getInitialCards(), this.getProfileInfo()]);
 // }
@@ -123,6 +97,7 @@ const editAvatarPopup = new PopupWithForm(
   "Saving..."
 );
 const previewImagePopup = new PopupWithImage("#preview-image-modal");
+
 const deleteCardPopup = new PopupWithConfirmation(
   "#delete-card-modal",
   handleConfirmButtonSubmit
@@ -135,27 +110,9 @@ const userInfo = new UserInfo({
   userPictureSelector: ".profile__image",
 });
 
-// SECTION CLASS-------------------------------------------------------
-//const section = new Section(
-//  {
-//    items: initialCards,
-//    renderer: (cardData) => {
-//    const card = createCard(cardData);
-//  section.addItem(card);
-//  },
-//},
-//cardListEl
-//);
-
-//section.renderItems();
-
-//console.log(section2);
-//section2.renderItems();
-
 //PROFILE EDIT MODAL-------------------------------------------------
 const profileEditButton = document.querySelector("#profile-edit-button");
 const avatarEditButton = document.querySelector(".profile__avatar-button");
-const avatarImageLinkInput = document.querySelector("#edit-avatar-link-input");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
@@ -163,19 +120,7 @@ const profileDescriptionInput = document.querySelector(
 
 //ADD CARD MODAL-----------------------------------------------------
 const addCardButton = document.querySelector("#add-card-button");
-const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
-const addCardImageLinkInput = document.querySelector("#add-card-link-input");
 const myID = "5b0dca03a3b5418a56e37bd7";
-const addCardSubmitButtonText = addCardModal.querySelector(
-  ".modal__save-button"
-).textContent;
-
-//const allAddCardModalInputs = addCardModal.querySelectorAll(".modal__input");
-//console.log(Array.from(allAddCardModalInputs));
-//
-//DELETE CARD MODAL-----------------------------------------------------
-
-const confirmDeleteButton = document.querySelector("#delete-image-submit");
 
 //EVENT LISTENERS------------------------------------------------------
 profileEditPopup.setEventListeners();
@@ -279,30 +224,29 @@ function handleCardClick(cardData) {
 function handleDeleteBinClick(cardID) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
-    api.deleteCard(cardID).then((res) => {
-      deleteCardPopup.close();
-      this.handleCardDelete();
-    });
-    //.catch((err) => {
-    //  console.error("Error. The request has failed: ", err)})
-    // })
-    //.finally
-    //
+    api
+      .deleteCard(cardID)
+      .then((res) => {
+        this.handleCardDelete();
+      })
+      .catch(console.error)
+      .finally(() => {
+        deleteCardPopup.close();
+      });
   });
 }
 
 function handleConfirmButtonSubmit() {
-  console.log("another submit");
+  handleCardDelete();
 }
 
 function handleAddingLike(cardID) {
-  api.addCardLike(this._cardID).then((res) => {
-    console.log(res);
-  });
+  api.addCardLike(cardID).then(() => {});
 }
 
 function handleRemovingLike(cardID) {
-  api.deleteCardLike(this._cardID).then((res) => {
-    console.log(res);
-  });
+  api
+    .deleteCardLike(cardID)
+    .then(() => {})
+    .catch(console.error);
 }
