@@ -45,21 +45,17 @@ const api = new Api({
   },
 });
 
+let cardListSection;
+
 Promise.all([api.getProfileInfo(), api.getInitialCards()])
   .then(([userData, cardData]) => {
     userInfo.setUserInfo(userData.name, userData.about);
     userInfo.setUserAvatar(userData.avatar);
-    const cardListSection = new Section(
+    cardListSection = new Section(
       {
         items: cardData,
         renderer: (data) => {
-          const newCard = createCard(
-            data.name,
-            data.link,
-            data.likes,
-            data._id,
-            data.owner._id
-          );
+          const newCard = createCard(data);
           cardListSection.addItem(newCard);
         },
       },
@@ -189,6 +185,9 @@ const addCardTitleInput = addCardModal.querySelector("#add-card-title-input");
 const addCardImageLinkInput = document.querySelector("#add-card-link-input");
 const myID = "5b0dca03a3b5418a56e37bd7";
 
+//const allAddCardModalInputs = addCardModal.querySelectorAll(".modal__input");
+//console.log(Array.from(allAddCardModalInputs));
+//
 //DELETE CARD MODAL-----------------------------------------------------
 
 const confirmDeleteButton = document.querySelector("#delete-image-submit");
@@ -214,13 +213,13 @@ addCardButton.addEventListener("click", () => {
 });
 
 //FUNCTIONS & EVENT HANDLERS----------------------------------------------
-function createCard(name, link, cardLikes, cardID, ownerID) {
+function createCard(cardData) {
   const card = new Card(
-    name,
-    link,
-    cardLikes,
-    cardID,
-    ownerID,
+    cardData.name,
+    cardData.link,
+    cardData.likes,
+    cardData._id,
+    cardData.owner._id,
     myID,
     cardSelector,
     handleCardClick,
@@ -228,7 +227,6 @@ function createCard(name, link, cardLikes, cardID, ownerID) {
     handleAddingLike,
     handleRemovingLike
   );
-  console.log(card);
   return card.getView();
 }
 
@@ -261,29 +259,15 @@ function handleEditProfileSubmit(inputValues) {
 }
 
 function handleAddCardSubmit(inputValues) {
-  //addCardPopup.renderLoading(true);
-  //this.renderLoading(true);
-  const newCardData = {
-    name: addCardTitleInput.value,
-    link: addCardImageLinkInput.value,
-  };
+  addCardPopup.renderLoading(true);
   api
-    .createNewCard(newCardData.name, newCardData.link)
+    .createNewCard(inputValues.title, inputValues.link)
     .then((res) => {
       const newCard = createCard(res);
-      //const newCard = {
-      //  name: res.name,
-      //  link: res.link,
-      //  cardLikes: res.likes,
-      //  cardID: res._id,
-      //  ownerID: res.owner._id,
-      //};
-      //createCard(newCard);
-      section.addItem(newCard);
+      cardListSection.addItem(newCard);
     })
     .then((res) => this.renderLoading(false))
     .catch(console.error);
-  //const newCard = createCard(newCardData);
   addCardPopup.close();
 }
 
