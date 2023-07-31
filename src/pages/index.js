@@ -235,8 +235,8 @@ function handleEditAvatarClick() {
 }
 
 function handleEditAvatarSubmit(inputValue) {
-  userInfo.setUserAvatar(avatarImageLinkInput.value);
-  api.editProfilePicture(avatarImageLinkInput.value);
+  userInfo.setUserAvatar(inputValue.link);
+  api.editProfilePicture(inputValue.link);
   editAvatarPopup.close();
 }
 
@@ -248,13 +248,11 @@ function handleProfileEditClick() {
 }
 
 function handleEditProfileSubmit(inputValues) {
-  this.renderLoading(true);
-  userInfo.setUserInfo(profileTitleInput.value, profileDescriptionInput.value);
-  api
-    .editProfileInfo(profileTitleInput.value, profileDescriptionInput.value)
-    .then(() => {
-      this.renderLoading(false);
-    });
+  profileEditPopup.renderLoading(true);
+  userInfo.setUserInfo(inputValues.title, inputValues.description);
+  api.editProfileInfo(inputValues.title, inputValues.description).then(() => {
+    this.renderLoading(false);
+  });
   profileEditPopup.close();
 }
 
