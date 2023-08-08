@@ -140,28 +140,3 @@ export default class Api {
     });
   }
 }
-
-//Promise.all(promises).then((results) => {
-//  console.log(results); // ["First promise", "Second promise"]
-//});
-
-//const api = new Api({
-//  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
-//  headers: {
-//    authorization: "61d2a1b6-82a5-4ea1-a1a2-2a63d3c4120b",
-//    "Content-Type": "application/json",
-//  },
-//});
-
-//api
-// .getInitialCards()
-// .then((result) => {
-//section.renderItems();
-// })
-// .catch((err) => {
-//   console.error(err); // log the error to the console
-// });
-
-//function renderCards(result) {
-//  Promise.all(result);
-//}

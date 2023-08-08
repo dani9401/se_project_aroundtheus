@@ -38,10 +38,6 @@ Promise.all([api.getProfileInfo(), api.getInitialCards()])
   })
   .catch(console.error);
 
-//getAppInfo() {
-//  return Promise.all([this.getInitialCards(), this.getProfileInfo()]);
-// }
-
 //CARD  -----------------------------------------------------------
 const cardSelector = document.querySelector("#card-template");
 const cardListEl = document.querySelector(".gallery__list");
@@ -156,8 +152,6 @@ function createCard(cardData) {
     handleCardClick,
     handleDeleteBinClick,
     handleCardLike
-    //handleAddingLike,
-    //handleRemovingLike
   );
   return card.getView();
 }
@@ -262,18 +256,3 @@ function handleCardLike(card) {
       });
   }
 }
-
-//function handleAddingLike(cardID) {
-//  api.addCardLike(cardID).then((res) => {
-//    //once the response comes in it's safe to show "like" on the page
-//  });
-//}
-
-//function handleRemovingLike(cardID) {
-//  api
-//    .deleteCardLike(cardID)
-//    .then(() => {
-//remove like button active class
-//    })
-//    .catch(console.error);
-//}
