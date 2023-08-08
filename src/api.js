@@ -111,7 +111,7 @@ export default class Api {
 
   // - - - - - ADDING & REMOVING LIKES - - - - -
   addCardLike(cardID) {
-    fetch(`${this._baseURL}/cards/likes/${cardID}`, {
+    return fetch(`${this._baseURL}/cards/likes/${cardID}`, {
       method: "PUT",
       headers: {
         authorization: this._authToken,
@@ -126,7 +126,7 @@ export default class Api {
   }
 
   deleteCardLike(cardID) {
-    fetch(`${this._baseURL}/cards/likes/${cardID}`, {
+    return fetch(`${this._baseURL}/cards/likes/${cardID}`, {
       method: "DELETE",
       headers: {
         authorization: this._authToken,
