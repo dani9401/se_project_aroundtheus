@@ -55,6 +55,7 @@ export default class Card {
   // - - - - - - Event Listeners - - - - - -
   _setEventListeners() {
     this._cardLikeButton.addEventListener("click", (e) => {
+      //instead call new "handleCardLike" being passed to constructor
       if (e.target.classList.contains("gallery__card-like-button_active")) {
         this._cardHasBeenUnliked();
       } else {

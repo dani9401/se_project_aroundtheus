@@ -241,12 +241,16 @@ function handleConfirmButtonSubmit() {
 }
 
 function handleAddingLike(cardID) {
-  api.addCardLike(cardID).then(() => {});
+  api.addCardLike(cardID).then((res) => {
+    //once the response comes in it's safe to show "like" on the page
+  });
 }
 
 function handleRemovingLike(cardID) {
   api
     .deleteCardLike(cardID)
-    .then(() => {})
+    .then(() => {
+      //remove like button active class
+    })
     .catch(console.error);
 }
