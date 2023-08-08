@@ -155,8 +155,9 @@ function createCard(cardData) {
     cardSelector,
     handleCardClick,
     handleDeleteBinClick,
-    handleAddingLike,
-    handleRemovingLike
+    handleCardLike
+    //handleAddingLike,
+    //handleRemovingLike
   );
   return card.getView();
 }
@@ -240,17 +241,39 @@ function handleConfirmButtonSubmit() {
   handleCardDelete();
 }
 
-function handleAddingLike(cardID) {
-  api.addCardLike(cardID).then((res) => {
-    //once the response comes in it's safe to show "like" on the page
-  });
+function handleCardLike(card) {
+  if (card.cardIsLiked()) {
+    api
+      .deleteCardLike(card._cardID)
+      .then((res) => {
+        card.updateLikeCount(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  } else {
+    api
+      .addCardLike(card._cardID)
+      .then((res) => {
+        card.updateLikeCount(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 }
 
-function handleRemovingLike(cardID) {
-  api
-    .deleteCardLike(cardID)
-    .then(() => {
-      //remove like button active class
-    })
-    .catch(console.error);
-}
+//function handleAddingLike(cardID) {
+//  api.addCardLike(cardID).then((res) => {
+//    //once the response comes in it's safe to show "like" on the page
+//  });
+//}
+
+//function handleRemovingLike(cardID) {
+//  api
+//    .deleteCardLike(cardID)
+//    .then(() => {
+//remove like button active class
+//    })
+//    .catch(console.error);
+//}
