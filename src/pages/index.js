@@ -233,17 +233,13 @@ function handleCardLike(card) {
       .then((res) => {
         card.updateLikeCount(res);
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(console.error);
   } else {
     api
       .addCardLike(card._cardID)
       .then((res) => {
         card.updateLikeCount(res);
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(console.error);
   }
 }
