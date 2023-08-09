@@ -89,20 +89,14 @@ export default class Api {
   addCardLike(cardID) {
     return fetch(`${this._baseURL}/cards/likes/${cardID}`, {
       method: "PUT",
-      headers: {
-        authorization: this._authToken,
-        "Content-Type": this._contentType,
-      },
+      headers: this._headers,
     }).then(this._checkResponse);
   }
 
   deleteCardLike(cardID) {
     return fetch(`${this._baseURL}/cards/likes/${cardID}`, {
       method: "DELETE",
-      headers: {
-        authorization: this._authToken,
-        "Content-Type": this._contentType,
-      },
+      headers: this._headers,
     }).then(this._checkResponse);
   }
 }
