@@ -208,13 +208,13 @@ function handleCardClick(cardData) {
   previewImagePopup.open(cardData);
 }
 
-function handleDeleteBinClick(cardID) {
+function handleDeleteBinClick(cardID, cardInstance) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
     api
       .deleteCard(cardID)
       .then((res) => {
-        this.handleCardDelete();
+        cardInstance.handleCardDelete();
         console.log(this);
         //tried calling card.handleCardDelete() instead, but card is not defined.
         deleteCardPopup.close();
