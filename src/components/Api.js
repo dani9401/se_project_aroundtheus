@@ -6,30 +6,27 @@ export default class Api {
     this._headers = options.headers;
   }
 
+  _checkResponse(res) {
+    if (res.ok) {
+      Promise.resolve("Promise Resolved");
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  }
+
   // - - - - - GET INITIAL CARDS - - - - -
   getInitialCards() {
     return fetch(`${this._baseURL}/cards`, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        Promise.resolve("Promise Resolved");
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
-  // - - - - - DELETE CARD - - - - -
+  // - - - - - DELETE CARD - - - - - = - -
   deleteCard(cardID) {
     return fetch(`${this._baseURL}/cards/${cardID}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   // - - - - - CREATE NEW CARD - - - - -
@@ -44,24 +41,14 @@ export default class Api {
         name: nameData,
         link: linkData,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   // - - - - - GET PROFILE INFO - - - - -
   getProfileInfo() {
     return fetch(`${this._baseURL}/users/me`, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   // - - - - - EDIT PROFILE NAME/DESCRIPTION - - - - -
@@ -76,12 +63,7 @@ export default class Api {
         name: nameInput,
         about: descriptionInput,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   // - - - - - EDIT PROFILE PICTURE - - - - -
@@ -95,12 +77,7 @@ export default class Api {
       body: JSON.stringify({
         avatar: avatarLink,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   // - - - - - ADDING & REMOVING LIKES - - - - -
@@ -111,12 +88,7 @@ export default class Api {
         authorization: this._authToken,
         "Content-Type": this._contentType,
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   deleteCardLike(cardID) {
@@ -126,11 +98,6 @@ export default class Api {
         authorization: this._authToken,
         "Content-Type": this._contentType,
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 }
