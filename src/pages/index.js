@@ -6,8 +6,8 @@ import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/section.js";
 import "../pages/index.css";
-import "../api.js";
-import Api from "../api.js";
+import "../components/Api.js";
+import Api from "../components/Api.js";
 
 //API  -----------------------------------------------------------
 const api = new Api({
