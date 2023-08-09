@@ -3,14 +3,13 @@ export default class Api {
     this._baseURL = options.baseUrl;
     this._authToken = options.headers.authorization;
     this._contentType = options.headers.contentType;
+    this._headers = options.headers;
   }
 
   // - - - - - GET INITIAL CARDS - - - - -
   getInitialCards() {
     return fetch(`${this._baseURL}/cards`, {
-      headers: {
-        authorization: this._authToken,
-      },
+      headers: this._headers,
     }).then((res) => {
       if (res.ok) {
         Promise.resolve("Promise Resolved");
@@ -24,9 +23,7 @@ export default class Api {
   deleteCard(cardID) {
     return fetch(`${this._baseURL}/cards/${cardID}`, {
       method: "DELETE",
-      headers: {
-        authorization: this._authToken,
-      },
+      headers: this._headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -58,10 +55,7 @@ export default class Api {
   // - - - - - GET PROFILE INFO - - - - -
   getProfileInfo() {
     return fetch(`${this._baseURL}/users/me`, {
-      headers: {
-        authorization: this._authToken,
-        "Content-Type": this._contentType,
-      },
+      headers: this._headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
