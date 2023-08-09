@@ -54,4 +54,9 @@ export default class PopupWithForm extends Popup {
       this._handleFormSubmit(inputValues);
     });
   }
+
+  close() {
+    super.close();
+    this._popupForm.reset();
+  }
 }
