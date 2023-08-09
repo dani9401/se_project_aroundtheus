@@ -215,8 +215,6 @@ function handleDeleteBinClick(cardID, cardInstance) {
       .deleteCard(cardID)
       .then((res) => {
         cardInstance.handleCardDelete();
-        console.log(this);
-        //tried calling card.handleCardDelete() instead, but card is not defined.
         deleteCardPopup.close();
       })
       .catch(console.error)
