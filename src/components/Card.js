@@ -17,7 +17,7 @@ export default class Card {
     this._link = link;
     this._cardLikes = cardLikes;
     this._cardLikesCount = cardLikes.length;
-    this._cardID = cardID;
+    this.cardID = cardID;
     this._ownerID = ownerID;
     this._myID = myID;
     this._cardSelector = cardSelector;
@@ -71,7 +71,7 @@ export default class Card {
     });
 
     this._cardDeleteButton.addEventListener("click", () => {
-      this._handleDeleteBinClick(this._cardID, this);
+      this._handleDeleteBinClick(this.cardID, this);
     });
 
     this._cardImage.addEventListener("click", () => {

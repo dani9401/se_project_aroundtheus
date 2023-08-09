@@ -229,14 +229,14 @@ function handleConfirmButtonSubmit() {
 function handleCardLike(card) {
   if (card.cardIsLiked()) {
     api
-      .deleteCardLike(card._cardID)
+      .deleteCardLike(card.cardID)
       .then((res) => {
         card.updateLikeCount(res);
       })
       .catch(console.error);
   } else {
     api
-      .addCardLike(card._cardID)
+      .addCardLike(card.cardID)
       .then((res) => {
         card.updateLikeCount(res);
       })
