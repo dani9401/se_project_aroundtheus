@@ -167,11 +167,11 @@ function handleEditAvatarSubmit(inputValue) {
     .editProfilePicture(inputValue.link)
     .then(() => {
       userInfo.setUserAvatar(inputValue.link);
-      editAvatarPopup.hideLoading();
+      editAvatarPopup.close();
     })
     .catch(console.error)
     .finally(() => {
-      editAvatarPopup.close();
+      editAvatarPopup.hideLoading();
     });
 }
 
@@ -188,11 +188,11 @@ function handleEditProfileSubmit(inputValues) {
     .editProfileInfo(inputValues.title, inputValues.description)
     .then(() => {
       userInfo.setUserInfo(inputValues.title, inputValues.description);
-      profileEditPopup.hideLoading();
+      profileEditPopup.close();
     })
     .catch(console.error)
     .finally(() => {
-      profileEditPopup.close();
+      profileEditPopup.hideLoading();
     });
 }
 
@@ -203,13 +203,11 @@ function handleAddCardSubmit(inputValues) {
     .then((res) => {
       const newCard = createCard(res);
       cardListSection.addItem(newCard);
-    })
-    .then((res) => {
-      addCardPopup.hideLoading();
+      addCardPopup.close();
     })
     .catch(console.error)
     .finally(() => {
-      addCardPopup.close();
+      addCardPopup.hideLoading();
     });
 }
 
@@ -224,11 +222,10 @@ function handleDeleteBinClick(cardID) {
       .deleteCard(cardID)
       .then((res) => {
         this.handleCardDelete();
+        deleteCardPopup.close();
       })
       .catch(console.error)
-      .finally(() => {
-        deleteCardPopup.close();
-      });
+      .finally(() => {});
   });
 }
 
