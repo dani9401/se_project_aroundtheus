@@ -16,6 +16,9 @@ export default class PopupWithForm extends Popup {
     this._submitButton = this._popupElement.querySelector(
       ".modal__save-button"
     );
+    this._inputs = Array.from(
+      this._popupForm.querySelectorAll(".modal__input")
+    );
   }
 
   showLoading() {
@@ -35,12 +38,10 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const inputs = Array.from(
-      this._popupForm.querySelectorAll(".modal__input")
-    );
     const inputValues = {};
-    inputs.forEach((input) => {
-      inputValues[input.name] = input.value; //why is input.name in brackets but value isn't?
+
+    this._inputs.forEach((input) => {
+      inputValues[input.name] = input.value;
     });
     return inputValues;
   }
