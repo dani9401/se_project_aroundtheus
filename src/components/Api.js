@@ -14,6 +14,11 @@ export default class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
+  //Intended improvement - - - - -
+  //_request(url, options) {
+  //  return fetch(url, options).then(this._checkResponse);
+  //}
+
   // - - - - - GET INITIAL CARDS - - - - -
   getInitialCards() {
     return fetch(`${this._baseURL}/cards`, {
