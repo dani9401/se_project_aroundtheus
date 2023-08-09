@@ -8,7 +8,7 @@ import Section from "../components/section.js";
 import "../pages/index.css";
 import "../components/Api.js";
 import Api from "../components/Api.js";
-//import { cardListEl, cardListSection } from "../components/constants.js";
+import { validationSettings } from "../../utils/Constants.js";
 
 //API  -----------------------------------------------------------
 const api = new Api({
@@ -46,13 +46,6 @@ const cardSelector = document.querySelector("#card-template");
 const cardListEl = document.querySelector(".gallery__list");
 
 //VALIDATION CLASS------------------------------------------------
-const validationSettings = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__input-error_active",
-};
 const addCardModal = document.querySelector("#add-card-modal");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
@@ -222,6 +215,8 @@ function handleDeleteBinClick(cardID) {
       .deleteCard(cardID)
       .then((res) => {
         this.handleCardDelete();
+        console.log(this);
+        //tried calling card.handleCardDelete() instead, but card is not defined.
         deleteCardPopup.close();
       })
       .catch(console.error)
