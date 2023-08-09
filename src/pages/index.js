@@ -8,6 +8,7 @@ import Section from "../components/section.js";
 import "../pages/index.css";
 import "../components/Api.js";
 import Api from "../components/Api.js";
+//import { cardListEl, cardListSection } from "../components/constants.js";
 
 //API  -----------------------------------------------------------
 const api = new Api({
@@ -19,11 +20,13 @@ const api = new Api({
 });
 
 let cardListSection;
+let myID;
 
 Promise.all([api.getProfileInfo(), api.getInitialCards()])
   .then(([userData, cardData]) => {
     userInfo.setUserInfo(userData.name, userData.about);
     userInfo.setUserAvatar(userData.avatar);
+    myID = userData._id;
     cardListSection = new Section(
       {
         items: cardData,
@@ -54,7 +57,6 @@ const addCardModal = document.querySelector("#add-card-modal");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardForm = addCardModal.querySelector("#modal-add-form");
-const editAvatarModal = document.querySelector("#edit-avatar-modal");
 const editAvatarForm = document.querySelector("#modal-edit-avatar-form");
 
 const editProfileFormValidator = new FormValidator(
@@ -116,7 +118,6 @@ const profileDescriptionInput = document.querySelector(
 
 //ADD CARD MODAL-----------------------------------------------------
 const addCardButton = document.querySelector("#add-card-button");
-const myID = "5b0dca03a3b5418a56e37bd7";
 
 //EVENT LISTENERS------------------------------------------------------
 profileEditPopup.setEventListeners();
