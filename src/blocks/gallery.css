@@ -70,6 +70,15 @@
   max-width: 219px;
 }
 
+.gallery__card-likes {
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery__card-like-count {
+  margin: auto;
+}
+
 .gallery__card-like-button {
   background: url(../images/like_inactive.svg) transparent center no-repeat;
   width: 21px;
@@ -77,6 +86,7 @@
   border: none;
   transition: opacity 0.5s ease-in-out;
   cursor: pointer;
+  margin: auto;
 }
 
 .gallery__card-like-button_active {

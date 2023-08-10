@@ -27,20 +27,23 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            class="profile__image"
-            src="<%=require('./images/jacques-cousteau.png')%>"
-            alt="avatar"
-          />
+          <div class="profile__avatar-container">
+            <img class="profile__image" src="#" alt="avatar" />
+            <button
+              class="profile__avatar-button"
+              type="button"
+              aria-label="edit-profile-image"
+            ></button>
+          </div>
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title"></h1>
             <button
               class="profile__edit-button"
               type="button"
               id="profile-edit-button"
               aria-label="edit-profile"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description"></p>
           </div>
           <button
             class="profile__add-button"
@@ -56,6 +59,31 @@
       <footer class="footer page__section">
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
+    </div>
+
+    <div class="modal" id="edit-avatar-modal">
+      <div class="modal__container-avatar">
+        <button
+          class="modal__close-button"
+          type="button"
+          id="close-edit-avatar-modal"
+        ></button>
+        <h2 class="modal__heading">Change Profile Picture</h2>
+        <form class="modal__form" id="modal-edit-avatar-form">
+          <label class="modal__label">
+            <input
+              type="url"
+              placeholder="Add new URL here..."
+              name="link"
+              class="modal__input"
+              id="edit-avatar-link-input"
+              required
+            />
+            <span class="modal__error" id="edit-avatar-link-input-error"></span>
+          </label>
+          <button class="modal__save-button" type="submit">Save</button>
+        </form>
+      </div>
     </div>
 
     <div class="modal" id="profile-edit-modal">
@@ -151,6 +179,26 @@
       </div>
     </div>
 
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container-delete">
+        <button
+          class="modal__close-button"
+          type="button"
+          id="close-delete-card-modal"
+        ></button>
+        <h2 class="modal__heading">Are you sure?</h2>
+        <form class="modal__form" id="modal-delete-form">
+          <button
+            class="modal__save-button"
+            type="submit"
+            id="delete-image-submit"
+          >
+            Yes
+          </button>
+        </form>
+      </div>
+    </div>
+
     <template id="card-template">
       <li class="gallery__card">
         <button
@@ -162,12 +210,15 @@
         <img class="gallery__card-image" src="#" alt="#" />
         <div class="gallery__card-description">
           <h2 class="gallery__card-title"></h2>
-          <button
-            class="gallery__card-like-button"
-            type="button"
-            aria-label="like-button"
-            id="card-like-button"
-          ></button>
+          <div class="gallery__card-likes">
+            <button
+              class="gallery__card-like-button"
+              type="button"
+              aria-label="like-button"
+              id="card-like-button"
+            ></button>
+            <p class="gallery__card-like-count"></p>
+          </div>
         </div>
       </li>
     </template>
