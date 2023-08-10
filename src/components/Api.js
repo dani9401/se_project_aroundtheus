@@ -38,10 +38,7 @@ export default class Api {
   createNewCard(nameData, linkData) {
     return fetch(`${this._baseURL}/cards`, {
       method: "POST",
-      headers: {
-        authorization: this._authToken,
-        "Content-Type": this._contentType,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: nameData,
         link: linkData,
