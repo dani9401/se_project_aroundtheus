@@ -57,10 +57,7 @@ export default class Api {
   editProfileInfo(nameInput, descriptionInput) {
     return fetch(`${this._baseURL}/users/me`, {
       method: "PATCH",
-      headers: {
-        authorization: this._authToken,
-        "Content-Type": this._contentType,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: nameInput,
         about: descriptionInput,
@@ -72,10 +69,7 @@ export default class Api {
   editProfilePicture(avatarLink) {
     return fetch(`${this._baseURL}/users/me/avatar`, {
       method: "PATCH",
-      headers: {
-        authorization: this._authToken,
-        "Content-Type": this._contentType,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: avatarLink,
       }),
